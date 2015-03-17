@@ -33,23 +33,23 @@ USE_OPENGL_RENDERER 		:= true
 NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
 TARGET_USES_C2D_COMPOSITION 	:= true
 
-BOARD_EGL_CFG 			:= device/doro/hero_64/egl.cfg
+BOARD_EGL_CFG 			:= device/doro/liberto_hero/egl.cfg
 MAX_EGL_CACHE_KEY_SIZE		:= 12*1024
 MAX_EGL_CACHE_SIZE 		:= 2048*1024
 
 # Kernel
 TARGET_KERNEL_ARCH              := arm
 TARGET_KERNEL_HEADER_ARCH       := arm
-TARGET_PREBUILT_KERNEL 		:= device/doro/hero_64/kernel
+TARGET_PREBUILT_KERNEL 		:= device/doro/liberto_hero/kernel
 TARGET_USES_UNCOMPRESSED_KERNEL := true
 TARGET_COMPILE_WITH_MSM_KERNEL 	:= true
 # Kernel includes
-COMMON_GLOBAL_CFLAGS 		+= -I device/doro/hero_64/include
-BOARD_KERNEL_CMDLINE 		:= console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 androidboot.hardware=qcom user_debug=30 msm_rtb.filter=0x3F ehci-hcd.park=3 androidboot.bootdevice=7824900.sdhci lpm_levels.sleep_disabled=1 androidboot.selinux=permissive
+COMMON_GLOBAL_CFLAGS 		+= -I device/doro/liberto_hero/include
+BOARD_KERNEL_CMDLINE 		:= console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 androidboot.hardware=qcom msm_rtb.filter=0x237 ehci-hcd.park=3 androidboot.bootdevice=7824900.sdhci lpm_levels.sleep_disabled=1 earlyprintk androidboot.selinux=permissive
 BOARD_KERNEL_BASE 		:= 0x80000000
 BOARD_KERNEL_PAGESIZE 		:= 2048
 BOARD_KERNEL_SEPARATED_DT 	:= true
-BOARD_MKBOOTIMG_ARGS 		:= --dt device/doro/hero_64/dt.img --kernel_offset 0x00008000 --ramdisk_offset 0x01000000 --tags_offset 0x00000100
+BOARD_MKBOOTIMG_ARGS 		:= --dt device/doro/liberto_hero/dt.img --kernel_offset 0x00008000 --ramdisk_offset 0x01000000 --tags_offset 0x00000100
 
 # QCOM BSP
 TARGET_USES_QCOM_BSP 		:= true
@@ -65,9 +65,9 @@ COMMON_GLOBAL_CFLAGS 		+= -DQCOM_HARDWARE
 TARGET_USERIMAGES_USE_EXT4 		:= true
 BOARD_HAS_LARGE_FILESYSTEM 		:= true
 RECOVERY_GRAPHICS_USE_LINELENGTH 	:= true
-TARGET_RECOVERY_INITRC 			:= device/doro/hero_64/recovery/init.rc
-TARGET_RECOVERY_FSTAB 			:= device/doro/hero_64/recovery/etc/recovery_twrp.fstab
-RECOVERY_SDCARD_ON_DATA 		:= true
+TARGET_RECOVERY_INITRC 			:= device/doro/liberto_hero/recovery/init.rc
+TARGET_RECOVERY_FSTAB 			:= device/doro/liberto_hero/recovery/etc/recovery.fstab
+# RECOVERY_SDCARD_ON_DATA 		:= true
 
 # TWRP-Specific
 DEVICE_RESOLUTION 			:= 720x1280

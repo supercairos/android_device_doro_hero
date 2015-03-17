@@ -1,18 +1,12 @@
-## Specify phone tech before including full_phone
-# $(call inherit-product, vendor/cm/config/gsm.mk)
-
 # Release name
-PRODUCT_RELEASE_NAME := hero_64
-
-# Inherit some common CM stuff.
-# $(call inherit-product, vendor/cm/config/common_full_phone.mk)
+PRODUCT_RELEASE_NAME := liberto_hero
 
 # Inherit device configuration
-$(call inherit-product, device/doro/hero_64/device_hero_64.mk)
+$(call inherit-product, device/doro/liberto_hero/device_liberto_hero.mk)
 
 ## Device identifier. This must come after all inclusions
-PRODUCT_DEVICE := hero_64
-PRODUCT_NAME := cm_hero_64
+PRODUCT_DEVICE := liberto_hero
+PRODUCT_NAME := cm_liberto_hero
 PRODUCT_BRAND := doro
-PRODUCT_MODEL := hero_64
+PRODUCT_MODEL := liberto_hero
 PRODUCT_MANUFACTURER := doro
