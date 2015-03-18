@@ -32,6 +32,7 @@ USE_OPENGL_RENDERER 			:= true
 NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
 TARGET_USES_C2D_COMPOSITION 	:= true
 
+# EGL Config
 BOARD_EGL_CFG 				:= device/doro/liberto_hero/egl.cfg
 MAX_EGL_CACHE_KEY_SIZE		:= 12*1024
 MAX_EGL_CACHE_SIZE 			:= 2048*1024
@@ -68,7 +69,7 @@ BOARD_HAS_LARGE_FILESYSTEM 			:= true
 RECOVERY_GRAPHICS_USE_LINELENGTH 	:= true
 TARGET_RECOVERY_INITRC 				:= device/doro/liberto_hero/recovery/init.rc
 TARGET_RECOVERY_FSTAB 				:= device/doro/liberto_hero/recovery/etc/recovery.fstab
-TARGET_PLATFORM_DEVICE_BASE 		:= /devices/soc.0/
+TARGET_RECOVERY_PIXEL_FORMAT 		:= "BGRA_8888"
 # RECOVERY_SDCARD_ON_DATA 			:= true
 
 # TWRP-Specific
