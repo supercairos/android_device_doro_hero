@@ -69,7 +69,6 @@ BOARD_HAS_LARGE_FILESYSTEM 			:= true
 RECOVERY_GRAPHICS_USE_LINELENGTH 	:= true
 TARGET_RECOVERY_INITRC 				:= device/doro/liberto_hero/recovery/init.rc
 TARGET_RECOVERY_FSTAB 				:= device/doro/liberto_hero/recovery/etc/recovery.fstab
-TARGET_RECOVERY_PIXEL_FORMAT 		:= "BGRA_8888"
 # RECOVERY_SDCARD_ON_DATA 			:= true
 
 # TWRP-Specific
