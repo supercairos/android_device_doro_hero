@@ -23,6 +23,8 @@ on init
     mkdir /system
     mkdir /data
     mkdir /cache
+	mkdir /variant
+	mkdir /persist
     mkdir /sideload
     mount tmpfs tmpfs /tmp
 
