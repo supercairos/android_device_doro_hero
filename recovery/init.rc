@@ -38,13 +38,13 @@ on fs
     mount functionfs adb /dev/usb-ffs/adb uid=2000,gid=2000
 
     write /sys/class/android_usb/android0/enable 0
-    write /sys/class/android_usb/android0/idVendor 18D1
+    write /sys/class/android_usb/android0/idVendor 2B43
     write /sys/class/android_usb/android0/idProduct D001
     write /sys/class/android_usb/android0/f_ffs/aliases adb
     write /sys/class/android_usb/android0/functions adb
-    write /sys/class/android_usb/android0/iManufacturer ${ro.product.manufacturer}
-    write /sys/class/android_usb/android0/iProduct ${ro.product.model}
-    write /sys/class/android_usb/android0/iSerial ${ro.serialno}
+    write /sys/class/android_usb/android0/iManufacturer Doro
+    write /sys/class/android_usb/android0/iProduct Liberto
+    write /sys/class/android_usb/android0/iSerial 123456ABC
 
 on boot
     ifup lo

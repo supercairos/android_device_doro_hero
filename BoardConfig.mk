@@ -75,11 +75,15 @@ COMMON_GLOBAL_CFLAGS 			+= -DQCOM_HARDWARE
 # TARGET_POWERHAL_VARIANT := qcom
 
 # Recovery
+RECOVERY_FSTAB_VERSION 				:= 2
+
 TARGET_USERIMAGES_USE_EXT4 			:= true
 BOARD_HAS_LARGE_FILESYSTEM 			:= true
 BOARD_USE_CUSTOM_RECOVERY_FONT 			:= \"roboto_15x24.h\"
 TARGET_RECOVERY_PIXEL_FORMAT 			:= "BGRA_8888"
 RECOVERY_GRAPHICS_USE_LINELENGTH 		:= true
+# TARGET_PROVIDES_INIT 				:= true 
+# TARGET_PROVIDES_INIT_TARGET_RC 	:= true
 TARGET_RECOVERY_INITRC 				:= device/doro/liberto_hero/recovery/init.rc
 TARGET_RECOVERY_FSTAB 				:= device/doro/liberto_hero/recovery/etc/recovery.fstab
 RECOVERY_SDCARD_ON_DATA 			:= true
