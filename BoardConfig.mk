@@ -96,7 +96,6 @@ TW_BRIGHTNESS_PATH 						:= /sys/class/leds/lcd-backlight/brightness
 TW_NO_BATT_PERCENT 						:= true
 TW_MAX_BRIGHTNESS 						:= 255
 TW_NO_USB_STORAGE 						:= true
-TW_INCLUDE_JB_CRYPTO 						:= true
 TW_INCLUDE_CRYPTO 						:= true
 
 TARGET_RECOVERY_QCOM_RTC_FIX 					:= true
