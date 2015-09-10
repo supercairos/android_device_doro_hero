@@ -1,5 +1,3 @@
-# ANDROID_COMMON_BUILD_MK = true
-
 # Bootloader
 TARGET_NO_BOOTLOADER 			:= true
 TARGET_NO_RADIOIMAGE 			:= true
@@ -13,27 +11,20 @@ TARGET_BOARD_PLATFORM_GPU 		:= qcom-adreno306
 TARGET_PLATFORM_DEVICE_BASE 		:= /devices/soc.0/
 
 # Architecture
-# TARGET_ARCH 				:= arm64
-# TARGET_ARCH_VARIANT			:= armv8-a
-# TARGET_CPU_ABI 			:= arm64-v8a
-# TARGET_CPU_ABI2 			:=
-# TARGET_CPU_VARIANT 			:= generic
-# TARGET_CPU_SMP 			:= true
+TARGET_ARCH 				:= arm64
+TARGET_ARCH_VARIANT			:= armv8-a
+TARGET_CPU_ABI 				:= arm64-v8a
+TARGET_CPU_ABI2 			:=
+TARGET_CPU_VARIANT 			:= generic
+TARGET_CPU_SMP 				:= true
 
-# Architecture
-TARGET_ARCH := arm
-TARGET_ARCH_VARIANT := armv7-a-neon
-TARGET_CPU_ABI := armeabi-v7a
-TARGET_CPU_ABI2 := armeabi
-TARGET_CPU_SMP := true
-TARGET_CPU_VARIANT := cortex-a7
+TARGET_2ND_ARCH 			:= arm
+TARGET_2ND_ARCH_VARIANT 		:= armv7-a-neon
+TARGET_2ND_CPU_ABI 			:= armeabi-v7a
+TARGET_2ND_CPU_ABI2 			:= armeabi
+TARGET_2ND_CPU_VARIANT 			:= cortex-a53
 
-# TARGET_2ND_ARCH 			:= arm
-# TARGET_2ND_ARCH_VARIANT 		:= armv7-a-neon
-# TARGET_2ND_CPU_ABI 			:= armeabi-v7a
-# TARGET_2ND_CPU_ABI2 			:= armeabi
-# TARGET_2ND_CPU_VARIANT 		:= cortex-a53
-# TARGET_USES_64_BIT_BINDER 		:= true
+TARGET_USES_64_BIT_BINDER 		:= true
 TARGET_CPU_CORTEX_A53 			:= true
 
 TARGET_USE_QCOM_BIONIC_OPTIMIZATION 	:= true
@@ -50,20 +41,17 @@ TARGET_USES_ION 			:= true
 TARGET_USES_NEW_ION_API 		:= true
 
 # Egl
-BOARD_EGL_CFG 				:= device/doro/liberto_hero/egl.cfg
 MAX_EGL_CACHE_KEY_SIZE			:= 12*1024
 MAX_EGL_CACHE_SIZE 			:= 2048*1024
 
 # Kernel
-# TARGET_KERNEL_CONFIG				:= msm8916-perf_defconfig
+TARGET_KERNEL_CONFIG				:= cm_hero_defconfig
 TARGET_KERNEL_SOURCE 				:= kernel/doro/msm8916/
-# TARGET_KERNEL_CROSS_COMPILE_PREFIX 		:= aarch64-linux-android-
-# TARGET_KERNEL_ARCH              		:= arm64
-# TARGET_KERNEL_HEADER_ARCH       		:= arm64
-TARGET_PREBUILT_KERNEL 				:= device/doro/liberto_hero/kernel
-TARGET_PREBUILT_RECOVERY_KERNEL 		:= device/doro/liberto_hero/kernel
-# TARGET_USES_UNCOMPRESSED_KERNEL 		:= true
-# TARGET_COMPILE_WITH_MSM_KERNEL 		:= true
+TARGET_KERNEL_CROSS_COMPILE_PREFIX 		:= aarch64-linux-android-
+TARGET_KERNEL_ARCH              		:= arm64
+TARGET_KERNEL_HEADER_ARCH       		:= arm64
+TARGET_USES_UNCOMPRESSED_KERNEL 		:= true
+TARGET_COMPILE_WITH_MSM_KERNEL 			:= true
 
 # Flags
 TARGET_GLOBAL_CFLAGS += -mfpu=neon -mfloat-abi=softfp
@@ -74,7 +62,8 @@ BOARD_KERNEL_CMDLINE 			:= console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0
 BOARD_KERNEL_BASE        		:= 0x80000000
 BOARD_KERNEL_PAGESIZE    		:= 2048
 BOARD_KERNEL_SEPARATED_DT 		:= true
-BOARD_MKBOOTIMG_ARGS 			:= --dt device/doro/liberto_hero/dt.img --kernel_offset 0x00008000 --ramdisk_offset 0x01000000 --tags_offset 0x00000100
+BOARD_CUSTOM_BOOTIMG_MK 		:= device/doro/liberto_hero/mkbootimg.mk
+BOARD_MKBOOTIMG_ARGS 			:= --kernel_offset 0x00008000 --ramdisk_offset 0x01000000 --tags_offset 0x00000100
 
 # QCOM BSP
 COMMON_GLOBAL_CFLAGS 			+= -DQCOM_BSP
@@ -93,7 +82,7 @@ RECOVERY_FSTAB_VERSION 					:= 2
 # Recovery storage
 TARGET_USERIMAGES_USE_EXT4 				:= true
 BOARD_HAS_LARGE_FILESYSTEM 				:= true
-TARGET_RECOVERY_FSTAB 					:= device/doro/liberto_hero/recovery/etc/cwrm.fstab
+TARGET_RECOVERY_FSTAB 					:= device/doro/liberto_hero/recovery/etc/twrp.fstab
 RECOVERY_SDCARD_ON_DATA 				:= true
 
 # Recovery graphics
@@ -102,9 +91,6 @@ TARGET_RECOVERY_PIXEL_FORMAT 				:= "RGB_565"
 RECOVERY_GRAPHICS_USE_LINELENGTH 			:= true
 
 # TWRP-Specific
-TW_USE_TOOLBOX 							:= true
-HAVE_SELINUX 							:= true
-
 DEVICE_RESOLUTION 						:= 720x1280
 TW_THEME 							:= portrait_hdpi
 TW_BRIGHTNESS_PATH 						:= /sys/class/leds/lcd-backlight/brightness
@@ -124,6 +110,4 @@ TW_TARGET_USES_QCOM_BSP 			:= true
 TW_NEW_ION_HEAP 				:= true
 BOARD_SUPPRESS_SECURE_ERASE 			:= true
 #Enable HW based full disk encryption
-# TARGET_HW_DISK_ENCRYPTION 			:= true
-#Enable SW based full disk encryption
-# TARGET_SWV8_DISK_ENCRYPTION 			:= true
+TARGET_HW_DISK_ENCRYPTION 			:= true
