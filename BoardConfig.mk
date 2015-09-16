@@ -33,14 +33,16 @@ ARCH_ARM_HAVE_TLS_REGISTER 		:= true
 # Graphics
 # Display
 TARGET_QCOM_DISPLAY_VARIANT 		:= caf-new
-USE_OPENGL_RENDERER 			:= true
 NUM_FRAMEBUFFER_SURFACE_BUFFERS 	:= 3
 TARGET_USES_C2D_COMPOSITION 		:= true
 OVERRIDE_RS_DRIVER 			:= libRSDriver_adreno.so
 TARGET_USES_ION 			:= true
-TARGET_USES_NEW_ION_API 		:= true
+USE_OPENGL_RENDERER 			:= true
+# TARGET_USES_NEW_ION_API 		:= true
 
 # Egl
+# Display
+BOARD_EGL_CFG 				:= device/doro/liberto_hero/egl.cfg
 MAX_EGL_CACHE_KEY_SIZE			:= 12*1024
 MAX_EGL_CACHE_SIZE 			:= 2048*1024
 
@@ -51,7 +53,7 @@ TARGET_KERNEL_CROSS_COMPILE_PREFIX 		:= aarch64-linux-android-
 TARGET_KERNEL_ARCH              		:= arm64
 TARGET_KERNEL_HEADER_ARCH       		:= arm64
 TARGET_USES_UNCOMPRESSED_KERNEL 		:= true
-TARGET_COMPILE_WITH_MSM_KERNEL 			:= true
+# TARGET_COMPILE_WITH_MSM_KERNEL 			:= true
 
 # Flags
 TARGET_GLOBAL_CFLAGS += -mfpu=neon -mfloat-abi=softfp
@@ -63,7 +65,8 @@ BOARD_KERNEL_BASE        		:= 0x80000000
 BOARD_KERNEL_PAGESIZE    		:= 2048
 BOARD_KERNEL_SEPARATED_DT 		:= true
 BOARD_CUSTOM_BOOTIMG_MK 		:= device/doro/liberto_hero/mkbootimg.mk
-BOARD_MKBOOTIMG_ARGS 			:= --kernel_offset 0x00008000 --ramdisk_offset 0x01000000 --tags_offset 0x00000100
+BOARD_RAMDISK_OFFSET     		:= 0x01000000
+BOARD_KERNEL_TAGS_OFFSET 		:= 0x00000100
 
 # QCOM BSP
 COMMON_GLOBAL_CFLAGS 			+= -DQCOM_BSP
@@ -74,7 +77,14 @@ BOARD_USES_QCOM_HARDWARE 		:= true
 COMMON_GLOBAL_CFLAGS 			+= -DQCOM_HARDWARE
 
 # Power
-TARGET_POWERHAL_VARIANT 				:= qcom
+TARGET_POWERHAL_VARIANT 		:= qcom
+
+# malloc implementation
+MALLOC_IMPL 				:= dlmalloc
+
+# Vold
+BOARD_VOLD_MAX_PARTITIONS := 32
+BOARD_VOLD_EMMC_SHARES_DEV_MAJOR := true
 
 # Recovery
 RECOVERY_FSTAB_VERSION 					:= 2
@@ -87,17 +97,17 @@ RECOVERY_SDCARD_ON_DATA 				:= true
 
 # Recovery graphics
 BOARD_USE_CUSTOM_RECOVERY_FONT 				:= \"roboto_15x24.h\"
-TARGET_RECOVERY_PIXEL_FORMAT 				:= "RGB_565"
+# TARGET_RECOVERY_PIXEL_FORMAT 				:= "RGB_565"
 RECOVERY_GRAPHICS_USE_LINELENGTH 			:= true
 
 # TWRP-Specific
 DEVICE_RESOLUTION 						:= 720x1280
 TW_THEME 							:= portrait_hdpi
-TW_BRIGHTNESS_PATH 						:= /sys/class/leds/lcd-backlight/brightness
+# TW_BRIGHTNESS_PATH 						:= /sys/class/leds/lcd-backlight/brightness
 TW_NO_BATT_PERCENT 						:= true
-TW_MAX_BRIGHTNESS 						:= 255
+# TW_MAX_BRIGHTNESS 						:= 255
 TW_NO_USB_STORAGE 						:= true
-TW_INCLUDE_CRYPTO 						:= true
+# TW_INCLUDE_CRYPTO 						:= true
 
 TW_INTERNAL_STORAGE_PATH 					:= "/data/media"
 TW_INTERNAL_STORAGE_MOUNT_POINT 				:= "data"
@@ -106,8 +116,8 @@ TW_EXTERNAL_STORAGE_MOUNT_POINT 				:= "sdcard1"
 TW_DEFAULT_EXTERNAL_STORAGE 					:= true
 
 TARGET_RECOVERY_QCOM_RTC_FIX 			:= true
-TW_TARGET_USES_QCOM_BSP 			:= true
-TW_NEW_ION_HEAP 				:= true
+# TW_TARGET_USES_QCOM_BSP 			:= true
+# TW_NEW_ION_HEAP 				:= true
 BOARD_SUPPRESS_SECURE_ERASE 			:= true
 #Enable HW based full disk encryption
-TARGET_HW_DISK_ENCRYPTION 			:= true
+# TARGET_HW_DISK_ENCRYPTION 			:= true
