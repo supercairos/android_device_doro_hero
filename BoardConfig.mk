@@ -16,19 +16,19 @@ BOARD_KERNEL_CMDLINE			+= androidboot.selinux=permissive
 
 # Recovery
 RECOVERY_FSTAB_VERSION 					:= 2
+TARGET_RECOVERY_FSTAB 					:= device/doro/liberto_hero/recovery/etc/cwm.fstab
 
 # Recovery storage
 BOARD_HAS_LARGE_FILESYSTEM 				:= true
 RECOVERY_SDCARD_ON_DATA 				:= true
-TARGET_RECOVERY_FSTAB 					:= device/doro/liberto_hero/recovery/etc/cwm.fstab
 
 # Recovery graphics
 BOARD_USE_CUSTOM_RECOVERY_FONT 				:= \"roboto_15x24.h\"
-# TARGET_RECOVERY_PIXEL_FORMAT 				:= "RGB_565"
+TARGET_RECOVERY_PIXEL_FORMAT 				:= "RGB_565"
 RECOVERY_GRAPHICS_USE_LINELENGTH 			:= true
 TARGET_RECOVERY_QCOM_RTC_FIX 				:= true
 
 TARGET_SYSTEM_PROP 						+= $(DEVICE_PATH)/system.prop
 
 # inherit from the proprietary version
--include vendor/yu/lettuce/BoardConfigVendor.mk
+-include vendor/doro/liberto_hero/BoardConfigVendor.mk
