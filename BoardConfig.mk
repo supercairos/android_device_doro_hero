@@ -1,3 +1,5 @@
+FORCE_32_BIT := true
+
 -include device/cyanogen/msm8916-common/BoardConfigCommon.mk
 
 DEVICE_PATH 			:= device/doro/liberto_hero
@@ -31,4 +33,4 @@ TARGET_RECOVERY_QCOM_RTC_FIX 				:= true
 TARGET_SYSTEM_PROP 						+= $(DEVICE_PATH)/system.prop
 
 # inherit from the proprietary version
--include vendor/doro/liberto_hero/BoardConfigVendor.mk
+-include vendor/doro/hero/BoardConfigVendor.mk
