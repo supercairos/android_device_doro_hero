@@ -2,8 +2,8 @@ DEVICE_PATH 					:= device/doro/liberto_hero
 TARGET_SPECIFIC_HEADER_PATH 	:= $(DEVICE_PATH)/include
 
 # Platform
-TARGET_BOARD_PLATFORM 		:= msm8916
-TARGET_BOARD_PLATFORM_GPU 	:= qcom-adreno306
+TARGET_BOARD_PLATFORM 			:= msm8916
+TARGET_BOARD_PLATFORM_GPU 		:= qcom-adreno306
 
 # Bootloader
 TARGET_BOOTLOADER_BOARD_NAME 	:= MSM8916
@@ -22,6 +22,8 @@ TARGET_CPU_VARIANT 						:= cortex-a53
 TARGET_CPU_CORTEX_A53 					:= true
 TARGET_USE_QCOM_BIONIC_OPTIMIZATION 	:= true
 ARCH_ARM_HAVE_TLS_REGISTER 				:= true
+TARGET_GLOBAL_CFLAGS 					+= -mfpu=neon -mfloat-abi=softfp
+TARGET_GLOBAL_CPPFLAGS 					+= -mfpu=neon -mfloat-abi=softfp
 
 # Kernel
 TARGET_KERNEL_CONFIG			:= cm_hero_defconfig
@@ -38,8 +40,7 @@ BOARD_KERNEL_PAGESIZE 			:= 2048
 BOARD_KERNEL_SEPARATED_DT 		:= true
 BOARD_KERNEL_TAGS_OFFSET 		:= 0x01E00000
 BOARD_RAMDISK_OFFSET     		:= 0x02000000
-TARGET_GLOBAL_CFLAGS 			+= -mfpu=neon -mfloat-abi=softfp
-TARGET_GLOBAL_CPPFLAGS 			+= -mfpu=neon -mfloat-abi=softfp
+
 
 # Partition table
 TARGET_USERIMAGES_USE_EXT4 			:= true
@@ -74,7 +75,22 @@ BOARD_HARDWARE_CLASS 			+= hardware/cyanogen/cmhw
 EXTENDED_FONT_FOOTPRINT 		:= true
 
 # Graphics
-BOARD_EGL_CFG 					:= device/doro/liberto_hero/config/egl.cfg
+BOARD_EGL_CFG 						:= device/doro/liberto_hero/config/egl.cfg
+TARGET_USES_C2D_COMPOSITION 		:= true
+TARGET_USES_ION 					:= true
+USE_OPENGL_RENDERER 				:= true
+NUM_FRAMEBUFFER_SURFACE_BUFFERS 	:= 3
+OVERRIDE_RS_DRIVER 					:= libRSDriver_adreno.so
+
+# Shader cache config options
+# Maximum size of the GLES Shaders that can be cached for reuse.
+# Increase the size if shaders of size greater than 12KB are used.
+MAX_EGL_CACHE_KEY_SIZE 				:= 12*1024
+
+# Maximum GLES shader cache size for each app to store the compiled shader
+# binaries. Decrease the size if RAM or Flash Storage size is a limitation
+# of the device.
+MAX_EGL_CACHE_SIZE 					:= 2048*1024
 
 # Time services
 BOARD_USES_QC_TIME_SERVICES := true
@@ -118,10 +134,10 @@ WIFI_DRIVER_FW_PATH_STA 			:= "sta"
 WPA_SUPPLICANT_VERSION 				:= VER_0_8_X
 
 # Recovery
-RECOVERY_FSTAB_VERSION 					:= 2
-TARGET_RECOVERY_FSTAB 					:= device/doro/liberto_hero/recovery/etc/cwm.fstab
-BOARD_HAS_LARGE_FILESYSTEM 				:= true
-RECOVERY_SDCARD_ON_DATA 				:= true
+RECOVERY_FSTAB_VERSION 						:= 2
+TARGET_RECOVERY_FSTAB 						:= device/doro/liberto_hero/recovery/etc/cwm.fstab
+BOARD_HAS_LARGE_FILESYSTEM 					:= true
+RECOVERY_SDCARD_ON_DATA 					:= true
 BOARD_USE_CUSTOM_RECOVERY_FONT 				:= \"roboto_15x24.h\"
 TARGET_RECOVERY_PIXEL_FORMAT 				:= "RGB_565"
 RECOVERY_GRAPHICS_USE_LINELENGTH 			:= true
