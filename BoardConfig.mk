@@ -41,7 +41,6 @@ BOARD_RAMDISK_OFFSET     		:= 0x02000000
 TARGET_GLOBAL_CFLAGS 			+= -mfpu=neon -mfloat-abi=softfp
 TARGET_GLOBAL_CPPFLAGS 			+= -mfpu=neon -mfloat-abi=softfp
 
-
 # Partition table
 TARGET_USERIMAGES_USE_EXT4 			:= true
 BOARD_BOOTIMAGE_PARTITION_SIZE 		:= 0x02000000
@@ -54,11 +53,31 @@ BOARD_PERSISTIMAGE_PARTITION_SIZE 	:= 33554432
 BOARD_PERSISTIMAGE_FILE_SYSTEM_TYPE := ext4
 BOARD_FLASH_BLOCK_SIZE 				:= 131072 # (BOARD_KERNEL_PAGESIZE * 64)
 
+# Power
+TARGET_POWERHAL_VARIANT := qcom
+
+# Qualcomm support
+BOARD_USES_QCOM_HARDWARE := true
+
+# RIL
+TARGET_RIL_VARIANT := caf
+PROTOBUF_SUPPORTED := true
+
 # malloc implementation
 MALLOC_IMPL := dlmalloc
 
+# CMHW
+BOARD_USES_CYANOGEN_HARDWARE 	:= true
+BOARD_HARDWARE_CLASS 			+= hardware/cyanogen/cmhw
+
+# Fonts
+EXTENDED_FONT_FOOTPRINT 		:= true
+
 # Graphics
-BOARD_EGL_CFG 							:= device/doro/liberto_hero/config/egl.cfg
+BOARD_EGL_CFG 					:= device/doro/liberto_hero/config/egl.cfg
+
+# Time services
+BOARD_USES_QC_TIME_SERVICES := true
 
 # Audio
 BOARD_USES_ALSA_AUDIO 		:= true
