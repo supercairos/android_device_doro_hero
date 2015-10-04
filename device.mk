@@ -1,7 +1,7 @@
-LOCAL_PATH:= $(call my-dir)
+DEVICE_PATH  := device/doro/liberto_hero
 
 # Overlay
-DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
+DEVICE_PACKAGE_OVERLAYS += $(DEVICE_PATH)/overlay
 
 PRODUCT_AAPT_CONFIG := normal
 PRODUCT_AAPT_PREF_CONFIG := xhdpi
@@ -36,7 +36,7 @@ PRODUCT_PACKAGES += \
     wcnss_service
     
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/wifi/WCNSS_qcom_cfg.ini:system/etc/wifi/WCNSS_qcom_cfg.ini
+    $(DEVICE_PATH)/wifi/WCNSS_qcom_cfg.ini:system/etc/wifi/WCNSS_qcom_cfg.ini
 
 PRODUCT_PROPERTY_OVERRIDES += \
     wifi.interface=wlan0
@@ -83,4 +83,10 @@ PRODUCT_PACKAGES += \
 	ueventd.qcom.rc \
 	init.target.rc
 	
+# Ebtables
+PRODUCT_PACKAGES += \
+    ebtables \
+    ethertypes \
+    libebtc
+
 $(call inherit-product-if-exists, vendor/doro/hero/hero-vendor.mk)
