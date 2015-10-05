@@ -46,10 +46,6 @@ ro.config.max_starting_bg=8
 #system props for time-services
 persist.timed.enable=true
 
-#Simulate sdcard on /data/media
-#
-persist.fuse_sdcard=true
-
 #
 # system prop for opengles version
 #
