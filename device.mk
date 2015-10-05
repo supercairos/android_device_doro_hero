@@ -53,7 +53,8 @@ PRODUCT_PACKAGES += \
     dhcpcd.conf \
     wpa_supplicant \
     wpa_supplicant.conf \
-	wcnss_service
+	wcnss_service \
+	libwcnss_qmi
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/wifi/hostapd.conf:system/etc/wifi/hostapd_default.conf \
