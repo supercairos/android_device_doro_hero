@@ -58,6 +58,11 @@ on init
     symlink /storage/sdcard1 /mnt/external_sd
     symlink /storage/sdcard1 /external_sd
 
+on fs
+    mount_all ./fstab.qcom
+    restorecon_recursive /persist
+    setprop ro.crypto.fuse_sdcard true	
+	
 on early-boot
     # set RLIMIT_MEMLOCK to 64MB
     setrlimit 8 67108864 67108864
