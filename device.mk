@@ -31,6 +31,11 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.wifi.xml:system/etc/permissions/android.hardware.wifi.xml \
     frameworks/native/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml
 
+# Connectivity
+PRODUCT_PACKAGES += \
+    libcnefeatureconfig \
+    libxml2	
+	
 # Audio
 PRODUCT_PACKAGES += \
     audiod \
