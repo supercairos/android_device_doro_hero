@@ -105,6 +105,17 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     power.msm8916	
 	
+# IRSC
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/sec_config:system/etc/sec_config
+	
+# FM
+PRODUCT_PACKAGES += \
+    FM2 \
+    FMRecord \
+    libqcomfm_jni \
+    qcom.fmradio	
+	
 # Ramdisk
 PRODUCT_PACKAGES += \
     fstab.qcom \
