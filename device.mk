@@ -143,9 +143,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
 	libloc_eng \
 	libloc_core \
-	libloc_ds_api \
 	libgps.utils \
-	libloc_api_v02 \
     gps.msm8916
 	
 PRODUCT_COPY_FILES += \
