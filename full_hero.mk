@@ -16,12 +16,13 @@
 
 LOCAL_PATH := device/doro/liberto_hero
 
-$(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
-$(call inherit-product, $(SRC_TARGET_DIR)/product/full.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 
 # Inherit from hardware-specific part of the product configuration
-$(call inherit-product, device/doro/liberto_hero/device.mk)
 $(call inherit-product-if-exists, vendor/doro/liberto_hero/hero-vendor.mk)
+# Inherit from hero device
+$(call inherit-product, device/doro/liberto_hero/device.mk)
+
 
 # Device identifier. This must come after all inclusions.
 PRODUCT_DEVICE := liberto_hero
