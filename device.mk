@@ -73,10 +73,6 @@ PRODUCT_COPY_FILES += \
 
 PRODUCT_PROPERTY_OVERRIDES += \
     wifi.interface=wlan0
-    
-# ZRAM
-PRODUCT_PACKAGES += \
-    init.qcom.zram.sh
 
 # Keylayouts
 PRODUCT_COPY_FILES += \
@@ -125,12 +121,6 @@ PRODUCT_PACKAGES += \
 # Ramdisk
 PRODUCT_PACKAGES += \
     fstab.qcom \
-	init.crda.sh \
-	init.qcom.bt.sh \
-	init.qcom.coex.sh \
-	init.qcom.rc \
-	init.qcom.usb.rc \
-	ueventd.qcom.rc \
 	init.target.rc
 	
 # Ebtables
