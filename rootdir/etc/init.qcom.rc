@@ -60,6 +60,8 @@ on init
 
 on fs
     mount_all ./fstab.qcom
+	
+	mkdir /persist/data 0700  system system
     restorecon_recursive /persist
     setprop ro.crypto.fuse_sdcard true	
 	
