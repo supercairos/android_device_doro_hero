@@ -77,6 +77,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Keylayouts
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/keylayout/ft5x06_ts.kl:system/usr/keylayout/ft5x06_ts.kl \
+	$(LOCAL_PATH)/keylayout/gpio-keys.kl:system/usr/keylayout/hall_sensor.kl \
     $(LOCAL_PATH)/keylayout/gpio-keys.kl:system/usr/keylayout/gpio-keys.kl
 	
 # Filesystem
@@ -109,7 +110,8 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/config/dsi_config.xml:system/etc/data/dsi_config.xml \
     $(LOCAL_PATH)/config/netmgr_config.xml:system/etc/data/netmgr_config.xml \
-    $(LOCAL_PATH)/config/qmi_config.xml:system/etc/data/qmi_config.xml	
+    $(LOCAL_PATH)/config/qmi_config.xml:system/etc/data/qmi_config.xml \	
+	$(LOCAL_PATH)/config/spn-conf.xml:system/etc/spn-conf.xml
 
 # FM
 PRODUCT_PACKAGES += \
@@ -126,6 +128,9 @@ PRODUCT_PACKAGES += \
 	init.qcom.coex.sh \
 	init.qcom.rc \
 	init.qcom.usb.rc \
+	init.qcom.uicc.sh \
+	init.qcom.modem_links.sh \
+	init.qcom.wifi.sh \
 	ueventd.qcom.rc \
 	init.target.rc
 	

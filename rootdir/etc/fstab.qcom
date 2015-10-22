@@ -14,7 +14,7 @@
 
 /dev/block/bootdevice/by-name/modem              /firmware           vfat    ro,shortname=lower,uid=1000,gid=1000,dmask=227,fmask=337                                         wait
 
-/devices/soc.0/7864900.sdhci/mmc_host            /storage/sdcard1    auto    auto                                                                                             voldmanaged=sdcard1:auto,noemulatedsd
+/devices/soc.0/7864900.sdhci/mmc_host*           /storage/sdcard1    auto    auto                                                                                             voldmanaged=sdcard1:auto,noemulatedsd
 /dev/block/bootdevice/by-name/config             /frp                emmc    defaults                                                                                         defaults
 
 /dev/block/zram0                                 none                swap    defaults                                                                                         zramsize=536870912
