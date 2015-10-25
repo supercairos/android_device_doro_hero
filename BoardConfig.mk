@@ -125,6 +125,9 @@ endif
 # FM
 TARGET_QCOM_NO_FM_FIRMWARE := true
 
+# NFC
+BOARD_NFC_CHIPSET := pn544
+
 # Wifi
 BOARD_HAS_QCOM_WLAN 				:= true
 BOARD_HAS_QCOM_WLAN_SDK 			:= true

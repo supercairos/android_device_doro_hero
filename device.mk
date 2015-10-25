@@ -81,6 +81,13 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     wifi.interface=wlan0
 
+# NFC packages
+PRODUCT_PACKAGES += \
+    nfc.default \
+    libnfc \
+    libnfc_jni \
+    Nfc
+
 # Keylayouts
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/keylayout/ft5x06_ts.kl:system/usr/keylayout/ft5x06_ts.kl \
