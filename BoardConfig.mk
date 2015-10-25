@@ -66,6 +66,8 @@ BOARD_USES_QCOM_HARDWARE := true
 TARGET_RIL_VARIANT 		:= caf
 PROTOBUF_SUPPORTED 		:= true
 
+TARGET_LDPRELOAD := libNimsWrap.so
+
 # malloc implementation
 MALLOC_IMPL := dlmalloc
 
@@ -126,7 +128,7 @@ endif
 TARGET_QCOM_NO_FM_FIRMWARE := true
 
 # NFC
-BOARD_NFC_CHIPSET := pn544
+BOARD_NFC_CHIPSET := pn547
 
 # Wifi
 BOARD_HAS_QCOM_WLAN 				:= true
