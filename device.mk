@@ -168,7 +168,6 @@ PRODUCT_PACKAGES += \
 	init.target.rc \
 	init.qcom.class_core.sh \
 	init.qcom.bms.sh \
-	init.qcom.syspart_fixup.sh \
 	init.class_main.sh
 	
 # ZRAM
