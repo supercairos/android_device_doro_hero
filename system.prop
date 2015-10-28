@@ -12,10 +12,10 @@ audio.offload.buffer.size.kb=64
 audio.offload.min.duration.secs=30
 av.offload.enable=false
 use.voice.path.for.pcm.voip=true
-
-ro.fm.transmitter=false
-persist.sys.fm=qn8035
 audio.offload.gapless.enabled=true
+
+# FM
+ro.fm.transmitter=false
 
 # Audio voice concurrency related flags
 voice.playback.conc.disabled=true
@@ -40,23 +40,26 @@ persist.hwc.ptor.enable=true
 dev.pm.dyn_samplingrate=1
 persist.demo.hdmirotationlock=false
 debug.sf.gpu_comp_tiling=1
-ro.sf.lcd_density=320
 debug.cpurend.vsync=false
 
-# Set max background services
+# Display Density
+ro.sf.lcd_density=320
+
+# Performance
 ro.config.max_starting_bg=8
 
-#system props for time-services
+# Time Deamon
 persist.timed.enable=true
 
-#
-# system prop for opengles version
-#
-# 196608 is decimal for 0x30000 to report version 3
+# Open GL
 ro.opengles.version=196608
 
+# RIL & Telephony
 ril.ecclist=000,08,100,101,102,110,112,118,119,120,122,911,999
 ro.telephony.default_network=9,1
 
 # Bluetooth
 bluetooth.hfp.client=1
+
+# USB
+ro.sys.usb.default.config=diag,serial_smd,serial_tty,mass_storage,adb
