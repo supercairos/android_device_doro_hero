@@ -44,6 +44,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     lights.msm8916	
 	
+# USB
+PRODUCT_PACKAGES += \
+    com.android.future.usb.accessory
+    
 # Connectivity
 PRODUCT_PACKAGES += \
     libcnefeatureconfig \
@@ -165,6 +169,7 @@ PRODUCT_PACKAGES += \
 	init.qcom.bt.sh \
 	init.qcom.coex.sh \
 	init.qcom.rc \
+    init.recovery.qcom.rc \
 	init.qcom.usb.rc \
 	init.qcom.usb.sh \
 	init.qcom.uicc.sh \
