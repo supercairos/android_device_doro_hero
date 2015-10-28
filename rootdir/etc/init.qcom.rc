@@ -74,6 +74,7 @@ on early-boot
     write /sys/module/pil_msa/parameters/modem_auth_timeout_ms ${persist.sys.modem_auth_timeout}
     write /sys/module/peripheral_loader/parameters/proxy_timeout_ms ${persist.sys.pil_proxy_timeout}
     write /sys/kernel/boot_adsp/boot 1
+	exec /system/bin/sh /init.qcom.syspart_fixup.sh
 
 on boot
     chown bluetooth bluetooth /sys/module/bluetooth_power/parameters/power
@@ -110,6 +111,12 @@ on boot
     chmod 2770 /dev/socket/qmux_bluetooth
     mkdir /dev/socket/qmux_gps 0770 gps gps
     chmod 2770 /dev/socket/qmux_gps
+	
+	chmod 0644 /proc/cmdline
+	
+	# permissions for NFC
+    chmod 0600 /dev/pn544
+    chown nfc nfc /dev/pn544
 
     setprop wifi.interface wlan0
 

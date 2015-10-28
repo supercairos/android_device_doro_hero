@@ -160,11 +160,16 @@ PRODUCT_PACKAGES += \
 	init.qcom.coex.sh \
 	init.qcom.rc \
 	init.qcom.usb.rc \
+	init.qcom.usb.sh \
 	init.qcom.uicc.sh \
 	init.qcom.modem_links.sh \
 	init.qcom.wifi.sh \
 	ueventd.qcom.rc \
-	init.target.rc
+	init.target.rc \
+	init.qcom.class_core.sh \
+	init.qcom.bms.sh \
+	init.qcom.syspart_fixup.sh \
+	init.class_main.sh
 	
 # ZRAM
 PRODUCT_PACKAGES += \
