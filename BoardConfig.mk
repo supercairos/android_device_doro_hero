@@ -10,6 +10,7 @@ TARGET_BOOTLOADER_BOARD_NAME 	:= MSM8916
 TARGET_NO_BOOTLOADER 			:= true
 
 # Init
+TARGET_INIT_VENDOR_LIB := libinit_msm
 TARGET_PLATFORM_DEVICE_BASE := /devices/soc.0/
 
 # CPU
@@ -34,7 +35,7 @@ endif
 TARGET_KERNEL_SOURCE 			:= kernel/doro/msm8916
 BOARD_CUSTOM_BOOTIMG_MK 		:= $(DEVICE_PATH)/mkbootimg.mk
 BOARD_KERNEL_BASE 				:= 0x80000000
-BOARD_KERNEL_CMDLINE 			:= console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 androidboot.hardware=qcom msm_rtb.filter=0x237 ehci-hcd.park=3 androidboot.bootdevice=7824900.sdhci lpm_levels.sleep_disabled=1
+BOARD_KERNEL_CMDLINE 			:= console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 androidboot.hardware=qcom user_debug=31 msm_rtb.filter=0x237 ehci-hcd.park=3 androidboot.bootdevice=7824900.sdhci earlyprintk
 BOARD_KERNEL_CMDLINE			+= androidboot.selinux=permissive
 BOARD_KERNEL_PAGESIZE 			:= 2048
 BOARD_KERNEL_SEPARATED_DT 		:= true
@@ -69,9 +70,10 @@ BOARD_USES_QCOM_HARDWARE := true
 TARGET_RIL_VARIANT 		:= caf
 PROTOBUF_SUPPORTED 		:= true
 
+# Additional lib
 TARGET_LDPRELOAD := libNimsWrap.so
 
-# malloc implementation
+# Malloc implementation
 MALLOC_IMPL := dlmalloc
 
 # CMHW
@@ -109,6 +111,12 @@ AUDIO_FEATURE_LOW_LATENCY_PRIMARY 	:= true
 AUDIO_FEATURE_DEEP_BUFFER_RINGTONE 	:= true
 AUDIO_FEATURE_ENABLED_KPI_OPTIMIZE 	:= true
 
+# ANT+
+BOARD_ANT_WIRELESS_DEVICE := "vfs-prerelease"
+
+# Enable suspend during charger mode
+BOARD_CHARGER_ENABLE_SUSPEND := true
+
 # Bluetooth
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR 	:= $(DEVICE_PATH)/bluetooth/
 BOARD_HAVE_BLUETOOTH 							:= true
@@ -128,6 +136,7 @@ ifeq ($(HOST_OS),linux)
 endif
 
 # FM
+AUDIO_FEATURE_ENABLED_FM := true
 TARGET_QCOM_NO_FM_FIRMWARE := true
 
 # NFC
@@ -152,6 +161,13 @@ TARGET_WCNSS_MAC_PREFIX 			:= "0896AB"
 # GPS
 BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := $(TARGET_BOARD_PLATFORM)
 TARGET_NO_RPC := true
+
+# Video
+TARGET_HAVE_SIGNED_VENUS_FW := true
+
+# Media
+TARGET_QCOM_MEDIA_VARIANT := caf-new
+TARGET_ENABLE_QC_AV_ENHANCEMENTS := true
 
 # Recovery
 RECOVERY_FSTAB_VERSION 						:= 2
