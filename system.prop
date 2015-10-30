@@ -55,8 +55,19 @@ persist.timed.enable=true
 ro.opengles.version=196608
 
 # RIL & Telephony
+rild.libpath=/system/vendor/lib/libril-qc-qmi-1.so
+rild.libargs=-d /dev/smd0
+ril.subscription.types=NV,RUIM
 ril.ecclist=000,08,100,101,102,110,112,118,119,120,122,911,999
-ro.telephony.default_network=9,1
+ro.telephony.default_network=9
+persist.radio.rat_on=combine
+persist.radio.snapshot_enabled=1
+persist.radio.snapshot_timer=22
+persist.radio.sib16_support=22
+persist.radio.apm_sim_not_pwdn=1
+
+ro.use_data_netmgrd
+persist.data.netmgrd.qos.enable=true
 
 # Bluetooth
 bluetooth.hfp.client=1
