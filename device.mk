@@ -150,9 +150,6 @@ PRODUCT_COPY_FILES += \
 	
 # Data
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/config/dsi_config.xml:system/etc/data/dsi_config.xml \
-    $(LOCAL_PATH)/config/netmgr_config.xml:system/etc/data/netmgr_config.xml \
-    $(LOCAL_PATH)/config/qmi_config.xml:system/etc/data/qmi_config.xml \
     $(LOCAL_PATH)/config/spn-conf.xml:system/etc/spn-conf.xml
 
 # FM
