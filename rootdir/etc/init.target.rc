@@ -80,6 +80,11 @@ service qseecomd /system/bin/qseecomd
    user root
    group root
 
+service per_mgr /system/bin/pm-service
+    class core
+    user system
+    group system net_raw   
+   
 #service aostlmd /system/bin/aostlmd
 #   class late_start
 #   user system
