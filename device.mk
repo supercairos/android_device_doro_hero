@@ -162,25 +162,14 @@ PRODUCT_PACKAGES += \
 # Ramdisk
 PRODUCT_PACKAGES += \
     fstab.qcom \
-	init.crda.sh \
 	init.qcom.bt.sh \
-	init.qcom.coex.sh \
 	init.qcom.rc \
     init.recovery.qcom.rc \
 	init.qcom.usb.rc \
 	init.qcom.usb.sh \
-	init.qcom.uicc.sh \
-	init.qcom.modem_links.sh \
-	init.qcom.wifi.sh \
 	ueventd.qcom.rc \
 	init.target.rc \
-	init.qcom.class_core.sh \
-	init.qcom.bms.sh \
 	init.class_main.sh
-	
-# ZRAM
-PRODUCT_PACKAGES += \
-    init.qcom.zram.sh
 	
 # Ebtables
 PRODUCT_PACKAGES += \

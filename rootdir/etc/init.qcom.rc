@@ -61,8 +61,11 @@ on init
 on fs
     mount_all ./fstab.qcom
 	
-	mkdir /persist/data 0700  system system
-    restorecon_recursive /persist
+	wait /dev/block/bootdevice/by-name/persist
+    mount ext4 /dev/block/bootdevice/by-name/persist /persist nosuid nodev barrier=1 check
+    mkdir /persist/data 0700  system system
+    restorecon_recursive   /persist
+	
     setprop ro.crypto.fuse_sdcard true	
 	
 on early-boot
