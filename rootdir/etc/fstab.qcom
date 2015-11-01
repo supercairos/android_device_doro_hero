@@ -11,7 +11,7 @@
 /dev/block/bootdevice/by-name/boot               /boot               emmc    defaults                                                                                         defaults
 /dev/block/bootdevice/by-name/recovery           /recovery           emmc    defaults                                                                                         defaults
 
-/dev/block/bootdevice/by-name/modem              /firmware           vfat    ro,context=u:object_r:firmware_file:s0,shortname=lower,uid=1000,gid=1000,dmask=227,fmask=337     wait
+/dev/block/bootdevice/by-name/modem              /firmware           vfat    ro,shortname=lower,uid=1000,gid=1000,dmask=227,fmask=337     wait
 
 /devices/soc.0/7864900.sdhci/mmc_host*           auto                auto    auto                                                                                             voldmanaged=sdcard1:auto,noemulatedsd
 /dev/block/bootdevice/by-name/config             /frp                emmc    defaults                                                                                         defaults
