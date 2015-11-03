@@ -170,7 +170,6 @@ PRODUCT_PACKAGES += \
 	init.qcom.usb.sh \
 	ueventd.qcom.rc \
 	init.target.rc \
-	init.class_main.sh \
 	init.qcom.fm.sh
 	
 # Ebtables
