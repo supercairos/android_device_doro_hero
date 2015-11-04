@@ -129,7 +129,7 @@ TARGET_HW_DISK_ENCRYPTION := true
 
 # Dex
 ifeq ($(HOST_OS),linux)
-  ifeq ($(TARGET_BUILD_VARIANT),user)
+  ifeq ($(filter $(TARGET_BUILD_VARIANT),user userdebug))
     ifeq ($(WITH_DEXPREOPT),)
       WITH_DEXPREOPT := true
     endif
