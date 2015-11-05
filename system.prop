@@ -91,7 +91,7 @@ DEVICE_PROVISIONED=1
 
 persist.omacp.enable=true
 
-ro.use_data_netmgrd
+ro.use_data_netmgrd=true
 persist.data.netmgrd.qos.enable=true
 
 # Bluetooth

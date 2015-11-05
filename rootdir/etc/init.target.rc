@@ -26,82 +26,7 @@
 # IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 #
-
-on early-init
-    mkdir /firmware 0771 system system
-    mkdir /system 0777 root root
-    symlink /data/tombstones /tombstones
-
-on post-fs-data
-    mkdir /data/tombstones 0771 system system
-    mkdir /tombstones/modem 0771 system system
-    mkdir /tombstones/lpass 0771 system system
-    mkdir /tombstones/wcnss 0771 system system
-    mkdir /tombstones/dsps 0771 system system
-    mkdir /persist/data/sfs 0700 system system
-    mkdir /persist/data/tz 0700 system system
-    mkdir /data/misc/dts 0770 media audio
-
-#enable zram
-on property:ro.config.zram=true
-    swapon_all fstab.qcom
-    write /proc/sys/vm/swappiness 100
-
-#start camera server as daemon
-service qcamerasvr /system/bin/mm-qcamera-daemon
-    class late_start
-    user camera
-    group camera system inet input graphics	
-	
-service qseecomd /system/bin/qseecomd
-   class core
-   user root
-   group root
-   
-service perfd /system/bin/perfd
-   class main
-   user root
-   disabled
-
-service thermal-engine /system/bin/thermal-engine
-   class main
-   user root
-   socket thermal-send-client stream 0666 system system
-   socket thermal-recv-client stream 0660 system system
-   socket thermal-recv-passive-client stream 0666 system system
-   group root
-
-service time_daemon /system/bin/time_daemon
-   class late_start
-   user root
-   group root
-
-service audiod /system/bin/audiod
-   class late_start
-   user system
-   group system
-   
-service ppd /system/bin/mm-pp-daemon
-    class late_start
-    disabled
-    user system
-    socket pps stream 0660 system system
-    group system graphics
-
-on property:init.svc.surfaceflinger=stopped
-    stop ppd
-
-on property:init.svc.surfaceflinger=running
-    start ppd
-
-service wcnss-service /system/bin/wcnss_service
-    class main
-    user system
-    group system wifi radio
-    oneshot
-
 on boot
-    start rmt_storage
 	# access permission for secure touch
     chmod 0660 /sys/devices/soc.0/78b9000.i2c/i2c-5/5-0020/secure_touch_enable
     chmod 0440 /sys/devices/soc.0/78b9000.i2c/i2c-5/5-0020/secure_touch
@@ -112,5 +37,4 @@ on boot
     chown system drmrpc /sys/devices/soc.0/78b9000.i2c/i2c-5/5-0070/secure_touch_enable
     chown system drmrpc /sys/devices/soc.0/78b9000.i2c/i2c-5/5-0070/secure_touch
 
-on charger
-    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor powersave
+
