@@ -15,7 +15,7 @@ PRODUCT_RELEASE_NAME := Doro Liberto 825
 PRODUCT_DEVICE := liberto_hero
 PRODUCT_NAME := cm_liberto_hero
 PRODUCT_BRAND := Doro
-PRODUCT_MODEL := Doro Liberto 825
+PRODUCT_MODEL := HERO
 PRODUCT_MANUFACTURER := Doro
 
 # Set product name
