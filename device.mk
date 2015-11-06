@@ -164,12 +164,11 @@ PRODUCT_PACKAGES += \
     fstab.qcom \
 	init.qcom.bt.sh \
 	init.qcom.rc \
+	init.qcom.power.rc \
     init.recovery.qcom.rc \
 	init.qcom.usb.rc \
-	init.qcom.usb.sh \
 	ueventd.qcom.rc \
-	init.target.rc \
-	init.qcom.fm.sh
+	init.target.rc
 	
 # Ebtables
 PRODUCT_PACKAGES += \
