@@ -9,7 +9,7 @@ $(call inherit-product, device/doro/liberto_hero/full_hero.mk)
 $(call inherit-product, vendor/cm/config/common_full_phone.mk)
 
 # Release name
-PRODUCT_RELEASE_NAME := Doro Liberto 825
+PRODUCT_RELEASE_NAME := HERO
 
 ## Device identifier. This must come after all inclusions
 PRODUCT_DEVICE := liberto_hero
