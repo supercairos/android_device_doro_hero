@@ -110,4 +110,4 @@ ro.sys.usb.default.config=diag,serial_smd,serial_tty,mass_storage,adb
 ro.config.zram=true
 
 # USB
-ro.sys.usb.default.config=diag,serial_smd,serial_tty,mass_storage,adb
+ro.sys.usb.default.config=mtp,adb
