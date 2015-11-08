@@ -59,6 +59,12 @@ PRODUCT_PACKAGES += \
     linville.key.pub.pem \
     regdbdump \
     regulatory.bin	
+
+# Qualcomm
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/config/dsi_config.xml:system/etc/data/dsi_config.xml \
+    $(LOCAL_PATH)/config/netmgr_config.xml:system/etc/data/netmgr_config.xml \
+    $(LOCAL_PATH)/config/qmi_config.xml:system/etc/data/qmi_config.xml	
 	
 # Audio
 PRODUCT_PACKAGES += \
