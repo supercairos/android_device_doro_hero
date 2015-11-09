@@ -168,6 +168,7 @@ PRODUCT_PACKAGES += \
 # Ramdisk
 PRODUCT_PACKAGES += \
     fstab.qcom \
+	init.qcom.fm.sh \
 	init.qcom.bt.sh \
 	init.qcom.rc \
 	init.qcom.power.rc \

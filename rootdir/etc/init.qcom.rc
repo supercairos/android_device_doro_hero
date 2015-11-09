@@ -482,36 +482,19 @@ service loc_launcher /system/bin/loc_launcher
     class late_start
     group gps inet net_raw qcom_diag net_admin wifi
 
+service fm_dl /system/bin/sh /system/etc/init.qcom.fm.sh
+    class late_start
+    user root
+    group system fm_radio
+    disabled
+    oneshot	
+	
 service hostapd /system/bin/hostapd -dd /data/hostapd/hostapd.conf
     class late_start
     user root
     group root
     oneshot
     disabled
-	
-# service ril-daemon1 /system/bin/rild -c 1
-    # class main
-    # socket rild1 stream 660 root radio
-    # socket rild-debug1 stream 660 radio system
-    # user root
-    # disabled
-    # group radio cache inet misc audio sdcard_r sdcard_rw diag qcom_diag log	
-	
-# service ril-daemon2 /system/bin/rild -c 2
-    # class main
-    # socket rild2 stream 660 root radio
-    # socket rild-debug2 stream 660 radio system
-    # user root
-    # disabled
-    # group radio cache inet misc audio sdcard_r sdcard_rw diag qcom_diag log
-
-# service ril-daemon3 /system/bin/rild -c 3
-    # class main
-    # socket rild3 stream 660 root radio
-    # socket rild-debug3 stream 660 radio system
-    # user root
-    # disabled
-    # group radio cache inet misc audio sdcard_r sdcard_rw diag qcom_diag log
 
 # virtual sdcard daemon running as media_rw (1023)
 service sdcard /system/bin/sdcard -u 1023 -g 1023 -l /data/media /mnt/shell/emulated
@@ -620,36 +603,3 @@ service vm_bms /system/bin/vm_bms
     class core
     user root
     group root
-	
-# service imsqmidaemon /system/bin/imsqmidaemon
-    # class main
-    # user system
-    # socket ims_qmid stream 0660 system radio
-    # group radio net_raw log qcom_diag
-
-# service imsdatadaemon /system/bin/imsdatadaemon
-    # class main
-    # user system
-    # socket ims_datad stream 0660 system radio
-    # group system wifi radio inet net_raw log qcom_diag net_admin
-    # disabled
-
-# on property:sys.ims.QMI_DAEMON_STATUS=1
-    # start imsdatadaemon
-
-# service ims_rtp_daemon /system/bin/ims_rtp_daemon
-   # class main
-   # user system
-   # socket ims_rtpd stream 0660 system radio
-   # group radio net_raw diag qcom_diag log
-   # disabled
-
-# service imscmservice /system/bin/imscmservice
-   # class main
-   # user system
-   # group radio net_raw diag qcom_diag log
-   # disabled 
-   
-# on property:sys.ims.DATA_DAEMON_STATUS=1
-    # start ims_rtp_daemon
-    # start imscmservice
