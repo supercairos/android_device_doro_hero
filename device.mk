@@ -62,9 +62,11 @@ PRODUCT_PACKAGES += \
 
 # Qualcomm
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/config/dsi_config.xml:system/etc/data/dsi_config.xml \
-    $(LOCAL_PATH)/config/netmgr_config.xml:system/etc/data/netmgr_config.xml \
-    $(LOCAL_PATH)/config/qmi_config.xml:system/etc/data/qmi_config.xml	
+    $(LOCAL_PATH)/config/data/dsi_config.xml:system/etc/data/dsi_config.xml \
+    $(LOCAL_PATH)/config/data/netmgr_config.xml:system/etc/data/netmgr_config.xml \
+    $(LOCAL_PATH)/config/data/qmi_config.xml:system/etc/data/qmi_config.xml \
+	$(LOCAL_PATH)/config/dpm/nsrm/NsrmConfiguration.xml:system/etc/dpm/nsrm/NsrmConfiguration.xml \
+	$(LOCAL_PATH)/config/dpm/dpm.conf:system/etc/dpm/dpm.conf
 	
 # Audio
 PRODUCT_PACKAGES += \
@@ -183,9 +185,13 @@ PRODUCT_PACKAGES += \
     ethertypes \
     libebtc
 	
+# Camera
+PRODUCT_PACKAGES += \
+    camera.msm8916 \
+    libmm-qcamera
+	
 # GPS
 PRODUCT_PACKAGES += \
-	libgps.utils \
     gps.msm8916
 	
 PRODUCT_COPY_FILES += \

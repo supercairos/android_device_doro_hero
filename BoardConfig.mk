@@ -42,6 +42,8 @@ BOARD_KERNEL_SEPARATED_DT 		:= true
 BOARD_KERNEL_TAGS_OFFSET 		:= 0x01E00000
 BOARD_RAMDISK_OFFSET     		:= 0x02000000
 
+# Charger
+BOARD_CHARGER_SHOW_PERCENTAGE := true
 
 # Partition table
 TARGET_USERIMAGES_USE_EXT4 			:= true
@@ -69,9 +71,6 @@ BOARD_USES_QCOM_HARDWARE := true
 # RIL
 TARGET_RIL_VARIANT 		:= caf
 PROTOBUF_SUPPORTED 		:= true
-
-# Additional lib
-TARGET_LDPRELOAD 		:= libNimsWrap.so
 
 # Malloc implementation
 MALLOC_IMPL 			:= dlmalloc
@@ -104,6 +103,13 @@ MAX_EGL_CACHE_SIZE 					:= 2048*1024
 
 # Time services
 BOARD_USES_QC_TIME_SERVICES 		:= true
+
+# Camera
+BOARD_CAMERA_SENSORS := \
+    ov5670_q5v41b \
+    ov8865_q8v18a
+TARGET_USE_VENDOR_CAMERA_EXT := true
+USE_DEVICE_SPECIFIC_CAMERA := true
 
 # Audio
 BOARD_USES_ALSA_AUDIO 				:= true
