@@ -106,8 +106,8 @@ BOARD_USES_QC_TIME_SERVICES 		:= true
 
 # Camera
 BOARD_CAMERA_SENSORS := \
-    ov5670_q5v41b \
-    ov8865_q8v18a
+    ov8858 \
+    ov2680
 TARGET_USE_VENDOR_CAMERA_EXT := true
 USE_DEVICE_SPECIFIC_CAMERA := true
 
