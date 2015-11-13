@@ -45,8 +45,34 @@ on enable-low-power
     start perfd
 
 on charger
-    write /sys/module/lpm_levels/parameters/sleep_disabled 0
-    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor "powersave"
+   wait /dev/block/bootdevice/by-name/system
+   mount ext4 /dev/block/bootdevice/by-name/system /system ro barrier=1
+   chown root system /sys/class/power_supply/bms/current_now
+   chown root system /sys/class/power_supply/bms/voltage_ocv
+   chmod 0664 /sys/class/power_supply/bms/current_now
+   chmod 0664 /sys/class/power_supply/bms/voltage_ocv
+   write /sys/module/lpm_levels/system/cpu0/wfi/idle_enabled Y
+   write /sys/module/lpm_levels/system/cpu1/wfi/idle_enabled Y
+   write /sys/module/lpm_levels/system/cpu2/wfi/idle_enabled Y
+   write /sys/module/lpm_levels/system/cpu3/wfi/idle_enabled Y
+   write /sys/module/lpm_levels/system/cpu0/standalone_pc/idle_enabled Y
+   write /sys/module/lpm_levels/system/cpu1/standalone_pc/idle_enabled Y
+   write /sys/module/lpm_levels/system/cpu2/standalone_pc/idle_enabled Y
+   write /sys/module/lpm_levels/system/cpu3/standalone_pc/idle_enabled Y
+   write /sys/module/lpm_levels/system/cpu0/pc/idle_enabled Y
+   write /sys/module/lpm_levels/system/cpu1/pc/idle_enabled Y
+   write /sys/module/lpm_levels/system/cpu2/pc/idle_enabled Y
+   write /sys/module/lpm_levels/system/cpu3/pc/idle_enabled Y
+   write /sys/module/lpm_levels/system/cpu0/pc/suspend_enabled N
+   write /sys/module/lpm_levels/system/cpu1/pc/suspend_enabled Y
+   write /sys/module/lpm_levels/system/cpu2/pc/suspend_enabled Y
+   write /sys/module/lpm_levels/system/cpu3/pc/suspend_enabled Y
+   write /sys/module/lpm_levels/system/l2-pc/idle_enabled Y
+   write /sys/module/lpm_levels/system/l2-cache-active/idle_enabled Y
+   write /sys/module/lpm_levels/system/l2-pc/suspend_enabled Y
+   write /sys/module/lpm_levels/parameters/sleep_disabled 0
+   write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor "powersave"
+   start vm_bms
 
 on class_start:late_start
     trigger enable-low-power
@@ -54,3 +80,50 @@ on class_start:late_start
 on property:init.svc.recovery=running
     trigger enable-low-power
 
+# Powersave
+on property:sys.perf.profile=0
+    write /sys/module/msm_thermal/core_control/enabled 0
+    write /sys/devices/system/cpu/cpu1/online 1
+    write /sys/devices/system/cpu/cpu2/online 1
+    write /sys/devices/system/cpu/cpu3/online 1
+    start perfd
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor "powersave"
+    write /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor "powersave"
+    write /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor "powersave"
+    write /sys/devices/system/cpu/cpu3/cpufreq/scaling_governor "powersave"
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 1094400
+    write /sys/devices/system/cpu/cpu1/cpufreq/scaling_min_freq 1094400
+    write /sys/devices/system/cpu/cpu2/cpufreq/scaling_min_freq 1094400
+    write /sys/devices/system/cpu/cpu3/cpufreq/scaling_min_freq 1094400
+    write /sys/class/kgsl/kgsl-3d0/devfreq/governor "powersave"
+    write /sys/class/devfreq/qcom,cpubw.30/governor "powersave"
+    write /sys/module/msm_thermal/core_control/enabled 1
+
+# Balanced
+on property:sys.perf.profile=1
+    stop perfd
+    write /sys/module/msm_thermal/core_control/enabled 0
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor "ondemand"
+    write /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor "ondemand"
+    write /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor "ondemand"
+    write /sys/devices/system/cpu/cpu3/cpufreq/scaling_governor "ondemand"
+    write /sys/class/kgsl/kgsl-3d0/devfreq/governor "msm-adreno-tz"
+    write /sys/class/devfreq/qcom,cpubw.30/governor "msm_cpufreq"
+    write /sys/module/msm_thermal/core_control/enabled 1
+    start perfd
+
+# Performance
+on property:sys.perf.profile=2
+    stop perfd
+    write /sys/module/msm_thermal/core_control/enabled 0
+    write /sys/devices/system/cpu/cpu1/online 1
+    write /sys/devices/system/cpu/cpu2/online 1
+    write /sys/devices/system/cpu/cpu3/online 1
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor "performance"
+    write /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor "performance"
+    write /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor "performance"
+    write /sys/devices/system/cpu/cpu3/cpufreq/scaling_governor "performance"
+    write /sys/class/kgsl/kgsl-3d0/devfreq/governor "performance"
+    write /sys/class/devfreq/qcom,cpubw.30/governor "performance"
+    write /sys/module/msm_thermal/core_control/enabled 1
+	start perfd
