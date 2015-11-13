@@ -211,17 +211,18 @@ on boot
     chmod 0664 /sys/class/power_supply/bms/current_now
     chmod 0664 /sys/class/power_supply/bms/voltage_ocv
 	
+	# Radio
+	insmod /system/lib/modules/radio-iris-transport.ko
+	
 	#set non-stand-charger can used
     write /sys/module/phy_msm_usb/parameters/floated_charger_enable Y
 	
     # Adaptive LMK
     write /sys/module/lowmemorykiller/parameters/enable_adaptive_lmk 1
-    write /sys/module/lowmemorykiller/parameters/vmpressure_file_min 81250
+    write /sys/module/lowmemorykiller/parameters/vmpressure_file_min 53059
 
 # msm specific files that need to be created on /data
 on post-fs-data
-    insmod /system/lib/modules/radio-iris-transport.ko
-	
     # Create directory for TZ Apps
     mkdir /data/misc/qsee 0770 system system
 
