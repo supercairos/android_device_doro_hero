@@ -33,6 +33,11 @@ dalvik.vm.heaptargetutilization=0.75
 dalvik.vm.heapminfree=2m
 dalvik.vm.heapmaxfree=8m
 
+# Enable B service
+ro.sys.fw.bservice_enable=true
+ro.sys.fw.bservice_limit=5
+ro.sys.fw.bservice_age=5000
+
 # Display
 debug.sf.hw=1
 debug.egl.hw=1
@@ -104,11 +109,5 @@ bluetooth.hfp.client=1
 # System property for cabl
 ro.qualcomm.cabl=2
 
-# USB
-ro.sys.usb.default.config=diag,serial_smd,serial_tty,mass_storage,adb
-
 # ZRam 
 ro.config.zram=true
-
-# USB
-ro.sys.usb.default.config=mtp,adb
