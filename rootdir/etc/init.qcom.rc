@@ -220,6 +220,8 @@ on boot
 
 # msm specific files that need to be created on /data
 on post-fs-data
+    insmod /system/lib/modules/radio-iris-transport.ko
+	
     # Create directory for TZ Apps
     mkdir /data/misc/qsee 0770 system system
 
@@ -494,13 +496,6 @@ service loc_launcher /system/bin/loc_launcher
     #loc_launcher will start as root and set its uid to gps
     class late_start
     group gps inet net_raw qcom_diag net_admin wifi
-
-service fm_dl /system/bin/sh /system/etc/init.qcom.fm.sh
-    class late_start
-    user root
-    group system fm_radio
-    disabled
-    oneshot	
 	
 service hostapd /system/bin/hostapd -dd /data/hostapd/hostapd.conf
     class late_start
