@@ -31,7 +31,7 @@ public class VibratorHW {
     }
 
     public static int getMinIntensity() {
-        return 19;
+        return 5;
     }
 
     public static int getWarningThreshold() {
