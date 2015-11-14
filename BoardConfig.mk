@@ -77,7 +77,7 @@ MALLOC_IMPL 			:= dlmalloc
 
 # CMHW
 BOARD_USES_CYANOGEN_HARDWARE 	:= true
-BOARD_HARDWARE_CLASS 			:= $(DEVICE_PATH)/cmhw
+BOARD_HARDWARE_CLASS 			:= $(DEVICE_PATH)/cmhw/src
 BOARD_HARDWARE_CLASS 			+= hardware/cyanogen/cmhw
 
 # Fonts
