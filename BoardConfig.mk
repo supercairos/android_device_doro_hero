@@ -83,7 +83,6 @@ BOARD_HARDWARE_CLASS 			:= $(DEVICE_PATH)/cmhw/src
 EXTENDED_FONT_FOOTPRINT 		:= true
 
 # Graphics
-BOARD_EGL_CFG 						:= $(DEVICE_PATH)/config/egl.cfg
 TARGET_USES_C2D_COMPOSITION 		:= true
 TARGET_USES_ION 					:= true
 USE_OPENGL_RENDERER 				:= true
