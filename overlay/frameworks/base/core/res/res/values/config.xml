@@ -42,6 +42,7 @@
          <item>"mobile_fota,10,0,2,60000,true"</item>
          <item>"mobile_ims,11,0,2,60000,true"</item>
          <item>"mobile_cbs,12,0,2,60000,true"</item>
+		 <item>"mobile_ia,14,0,2,-1,true"</item>
          <item>"bluetooth,7,7,2,-1,true"</item>
      </string-array>
  
@@ -69,7 +70,6 @@
          should be empty.  An example would be "softap.*" -->
     <string-array translatable="false" name="config_tether_wifi_regexs">
         <item>"wlan\\d"</item>
-        <item>"softap.*"</item>
     </string-array>
 
     <!-- List of regexpressions describing the interface (if any) that represent tetherable
@@ -268,6 +268,8 @@
     <!-- Whether UI for multi user should be shown -->
     <bool name="config_enableMultiUserUI">true</bool>
 	
+	<!-- Make things go fast -->
+    <bool name="config_ui_enableFadingMarquee">false</bool>
 	
     <!-- Defines the system property to set for performance profile xe: sys.cpu.modes. Leave it
          blank if the device do not support performance profiles -->
