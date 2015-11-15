@@ -199,10 +199,10 @@ PRODUCT_PACKAGES += \
 
 # Sensors
 PRODUCT_PACKAGES += \
+    sensors.msm8916 \
+    calmodule.cfg \
+    libcalmodule_common \
     sensors.msm8916
-
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/sensors/calmodule.cfg:system/vendor/etc/calmodule.cfg
 	
 # IRSC
 PRODUCT_COPY_FILES += \
