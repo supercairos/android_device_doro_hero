@@ -57,6 +57,7 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 /*****************************************************************************/
 CompassSensor::CompassSensor(struct SensorContext *context)
 	: SensorBase(NULL, NULL, context),
+	  mEnabled(0),
 	  mInputReader(4),
 	  mHasPendingEvent(false),
 	  mEnabledTime(0),
@@ -75,7 +76,6 @@ CompassSensor::CompassSensor(struct SensorContext *context)
 	data_fd = context->data_fd;
 	strlcpy(input_sysfs_path, context->enable_path, sizeof(input_sysfs_path));
 	input_sysfs_path_len = strlen(input_sysfs_path);
-	mUseAbsTimeStamp = false;
 
 	enable(0, 1);
 }
@@ -199,11 +199,13 @@ again:
 					mPendingEvent.timestamp = report_time+event->value;
 					break;
 				case SYN_REPORT:
-					if(mUseAbsTimeStamp != true)
+					if (mUseAbsTimeStamp != true) {
 						mPendingEvent.timestamp = timevalToNano(event->time);
+					}
 					if (mEnabled) {
 						if (mPendingEvent.timestamp >= mEnabledTime) {
 							raw = mPendingEvent;
+
 							if (algo != NULL) {
 								if (algo->methods->convert(&raw, &result, NULL)) {
 									ALOGE("Calibration failed.");
@@ -215,11 +217,13 @@ again:
 							} else {
 								result = raw;
 							}
+
 							*data = result;
 							data->version = sizeof(sensors_event_t);
 							data->sensor = mPendingEvent.sensor;
 							data->type = SENSOR_TYPE_MAGNETIC_FIELD;
 							data->timestamp = mPendingEvent.timestamp;
+
 							/* The raw data is stored inside sensors_event_t.data after
 							 * sensors_event_t.magnetic. Notice that the raw data is
 							 * required to composite the virtual sensor uncalibrated
@@ -232,16 +236,15 @@ again:
 							data->data[4] = mPendingEvent.data[0];
 							data->data[5] = mPendingEvent.data[1];
 							data->data[6] = mPendingEvent.data[2];
+
 							data++;
 							numEventReceived++;
 						}
 						count--;
+						break;
 					}
-					break;
-				default:
-					ALOGE("UNKNOWN EV_SYN Code %d",event->code);
-					break;
-		}
+
+			}
 		} else {
 			ALOGE("CompassSensor: unknown event (type=%d, code=%d)",
 					type, event->code);

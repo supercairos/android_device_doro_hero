@@ -40,6 +40,7 @@
 
 PressureSensor::PressureSensor()
 	: SensorBase(NULL, "bmp18x"),
+	  mEnabled(0),
 	  mInputReader(4),
 	  mHasPendingEvent(false),
 	  mEnabledTime(0)
@@ -63,7 +64,8 @@ PressureSensor::PressureSensor()
 }
 
 PressureSensor::PressureSensor(struct SensorContext *context)
-	: SensorBase(NULL, NULL, context),
+	: SensorBase(NULL, NULL),
+	  mEnabled(0),
 	  mInputReader(4),
 	  mHasPendingEvent(false),
 	  mEnabledTime(0)
@@ -82,6 +84,7 @@ PressureSensor::PressureSensor(struct SensorContext *context)
 
 PressureSensor::PressureSensor(char *name)
 	: SensorBase(NULL, "bmp18x"),
+	  mEnabled(0),
 	  mInputReader(4),
 	  mHasPendingEvent(false),
 	  mEnabledTime(0)

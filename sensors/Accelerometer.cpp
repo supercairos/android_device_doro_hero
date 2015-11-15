@@ -24,9 +24,8 @@
 #include <dirent.h>
 #include <sys/select.h>
 #include <cutils/log.h>
-#include <stdlib.h>
 #include <cutils/properties.h>
-
+#include <stdlib.h>
 #include "AccelSensor.h"
 #include "sensors.h"
 
@@ -49,6 +48,7 @@
 
 AccelSensor::AccelSensor()
 	: SensorBase(NULL, "accelerometer"),
+	  mEnabled(0),
 	  mInputReader(4),
 	  mHasPendingEvent(false),
 	  mEnabledTime(0)
@@ -57,7 +57,6 @@ AccelSensor::AccelSensor()
 	mPendingEvent.sensor = SENSORS_ACCELERATION_HANDLE;
 	mPendingEvent.type = SENSOR_TYPE_ACCELEROMETER;
 	memset(mPendingEvent.data, 0, sizeof(mPendingEvent.data));
-	mPendingEvent.acceleration.status = SENSOR_STATUS_ACCURACY_HIGH;
 
 	if (data_fd) {
 		strlcpy(input_sysfs_path, "/sys/class/input/", sizeof(input_sysfs_path));
@@ -78,6 +77,7 @@ AccelSensor::AccelSensor()
 
 AccelSensor::AccelSensor(char *name)
 	: SensorBase(NULL, "accelerometer"),
+	  mEnabled(0),
 	  mInputReader(4),
 	  mHasPendingEvent(false),
 	  mEnabledTime(0)
@@ -86,7 +86,6 @@ AccelSensor::AccelSensor(char *name)
 	mPendingEvent.sensor = SENSORS_ACCELERATION_HANDLE;
 	mPendingEvent.type = SENSOR_TYPE_ACCELEROMETER;
 	memset(mPendingEvent.data, 0, sizeof(mPendingEvent.data));
-	mPendingEvent.acceleration.status = SENSOR_STATUS_ACCURACY_HIGH;
 
 	if (data_fd) {
 		strlcpy(input_sysfs_path, SYSFS_CLASS, sizeof(input_sysfs_path));
@@ -100,6 +99,7 @@ AccelSensor::AccelSensor(char *name)
 
 AccelSensor::AccelSensor(SensorContext *context)
 	: SensorBase(NULL, NULL, context),
+	  mEnabled(0),
 	  mInputReader(4),
 	  mHasPendingEvent(false),
 	  mEnabledTime(0)
@@ -108,7 +108,6 @@ AccelSensor::AccelSensor(SensorContext *context)
 	mPendingEvent.sensor = context->sensor->handle;
 	mPendingEvent.type = SENSOR_TYPE_ACCELEROMETER;
 	memset(mPendingEvent.data, 0, sizeof(mPendingEvent.data));
-	mPendingEvent.acceleration.status = SENSOR_STATUS_ACCURACY_HIGH;
 
 	strlcpy(input_sysfs_path, context->enable_path, sizeof(input_sysfs_path));
 	input_sysfs_path_len = strlen(input_sysfs_path);
@@ -221,19 +220,19 @@ again:
 				mPendingEvent.data[2] = value * CONVERT_ACCEL_Z;
 			}
 		} else if (type == EV_SYN) {
-			switch (event->code){
+			switch ( event->code ){
 				case SYN_TIME_SEC:
 					{
 						mUseAbsTimeStamp = true;
 						report_time = event->value*1000000000LL;
 					}
-					break;
+				break;
 				case SYN_TIME_NSEC:
 					{
 						mUseAbsTimeStamp = true;
 						mPendingEvent.timestamp = report_time+event->value;
 					}
-					break;
+				break;
 				case SYN_REPORT:
 					{
 						if(mUseAbsTimeStamp != true) {
@@ -247,16 +246,7 @@ again:
 							count--;
 						}
 					}
-					break;
-				case SYN_CONFIG:
-					{
-						if (mEnabled) {
-							*data++ = meta_data;
-							count--;
-							ALOGD("meta_data.sensor=%d\n", meta_data.sensor);
-						}
-					}
-					break;
+				break;
 			}
 		} else {
 			ALOGE("AccelSensor: unknown event (type=%d, code=%d)",

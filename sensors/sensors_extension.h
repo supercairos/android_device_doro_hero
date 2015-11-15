@@ -35,9 +35,9 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #define CMD_W_L_MASK 0x00
 #define CMD_W_H_MASK 0x10
-#define CMD_W_H_L	0x10
-#define DATA_H_MASK	0xFFFF0000
-#define DATA_L_MASK	0x0000FFFF
+#define CMD_W_H_L    0x10
+#define DATA_H_MASK    0xFFFF0000
+#define DATA_L_MASK    0x0000FFFF
 
 /*
  *sensor calibrate command for sensors axis threshold or factor
@@ -47,23 +47,23 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *AXIS_FACTOR is used to calibrate light sensor fatcor of the real data
  *AXIS_OFFSET is used to calibrate light sensor offset of the real data
  */
-#define AXIS_X		0
-#define AXIS_Y		1
-#define AXIS_Z		2
-#define AXIS_XYZ	3
+#define AXIS_X        0
+#define AXIS_Y        1
+#define AXIS_Z        2
+#define AXIS_XYZ    3
 
-#define AXIS_THRESHOLD_H	0
-#define AXIS_THRESHOLD_L	1
-#define AXIS_BIAS		2
+#define AXIS_THRESHOLD_H    0
+#define AXIS_THRESHOLD_L    1
+#define AXIS_BIAS        2
 
-#define AXIS_FACTOR		0
-#define AXIS_OFFSET		1
+#define AXIS_FACTOR        0
+#define AXIS_OFFSET        1
 
-#define AXIS_SHIFT	17
-#define SAVE_SHIFT	16
-#define CMD_SHIFT	16
+#define AXIS_SHIFT    17
+#define SAVE_SHIFT    16
+#define CMD_SHIFT    16
 
-#define LENGTH		33 /*one cal_result and separator length*/
+#define LENGTH        33 /*one cal_result and separator length*/
 __BEGIN_DECLS
 
 
@@ -75,18 +75,18 @@ __BEGIN_DECLS
  *write factor and offset params to light sensor driver.
  */
 enum {
-	CMD_DO_CAL = 0x0,
-	CMD_W_OFFSET_X,
-	CMD_W_OFFSET_Y,
-	CMD_W_OFFSET_Z,
-	CMD_W_THRESHOLD_H,
-	CMD_W_THRESHOLD_L,
-	CMD_W_BIAS,
-	CMD_W_OFFSET,
-	CMD_W_FACTOR,
-	CMD_W_RANGE,
-	CMD_COMPLETE,
-	CMD_COUNT
+    CMD_DO_CAL = 0x0,
+    CMD_W_OFFSET_X,
+    CMD_W_OFFSET_Y,
+    CMD_W_OFFSET_Z,
+    CMD_W_THRESHOLD_H,
+    CMD_W_THRESHOLD_L,
+    CMD_W_BIAS,
+    CMD_W_OFFSET,
+    CMD_W_FACTOR,
+    CMD_W_RANGE,
+    CMD_COMPLETE,
+    CMD_COUNT
 };
 
 /*
@@ -95,76 +95,76 @@ enum {
  *CMD_CAL()calibrate command
  */
 #define SET_CMD_H(param, CMDS) \
-	(((param) & DATA_H_MASK) | CMDS \
-	| (CMD_W_H_L & CMD_W_H_MASK))
+    (((param) & DATA_H_MASK) | CMDS \
+    | (CMD_W_H_L & CMD_W_H_MASK))
 
 #define SET_CMD_L(param, CMDS) \
-	(((param) & DATA_L_MASK) << CMD_SHIFT | CMDS \
-	 | (CMD_W_H_L & CMD_W_L_MASK))
+    (((param) & DATA_L_MASK) << CMD_SHIFT | CMDS \
+     | (CMD_W_H_L & CMD_W_L_MASK))
 
 #define CMD_CAL(axis, apply_now) \
-	((axis) << AXIS_SHIFT | (apply_now)<< SAVE_SHIFT | CMD_DO_CAL)
+    ((axis) << AXIS_SHIFT | (apply_now)<< SAVE_SHIFT | CMD_DO_CAL)
 
 struct cal_cmd_t{
-	int axis; /* The axis to calibrate */
-	bool save; /* Whether to write to config file */
-	bool apply_now; /* Whether to apply the calibration parameters now */
+    int axis; /* The axis to calibrate */
+    bool save; /* Whether to write to config file */
+    bool apply_now; /* Whether to apply the calibration parameters now */
 };
 
 struct sensors_poll_device_1_ext_t {
-	union {
+    union {
 
-		struct sensors_poll_device_1 aosp;
-		struct {
-			struct hw_device_t common;
-			int (*activate)(struct sensors_poll_device_t *dev,
-					int handle, int enabled);
-			int (*setDelay)(struct sensors_poll_device_t *dev,
-					int handle, int64_t period_ns);
-			int (*poll)(struct sensors_poll_device_t *dev,
-					sensors_event_t* data, int count);
-			int (*batch)(struct sensors_poll_device_1* dev,
-					int handle, int flags, int64_t period_ns, int64_t timeout);
-			int (*flush)(struct sensors_poll_device_1* dev, int handle);
-			void (*reserved_procs[8])(void);
-		};
-	};
+        struct sensors_poll_device_1 aosp;
+        struct {
+            struct hw_device_t common;
+            int (*activate)(struct sensors_poll_device_t *dev,
+                    int handle, int enabled);
+            int (*setDelay)(struct sensors_poll_device_t *dev,
+                    int handle, int64_t period_ns);
+            int (*poll)(struct sensors_poll_device_t *dev,
+                    sensors_event_t* data, int count);
+            int (*batch)(struct sensors_poll_device_1* dev,
+                    int handle, int flags, int64_t period_ns, int64_t timeout);
+            int (*flush)(struct sensors_poll_device_1* dev, int handle);
+            void (*reserved_procs[8])(void);
+        };
+    };
 
-	/* return -1 on error. Otherwise return the calibration result */
-	int (*calibrate)(struct sensors_poll_device_1_ext_t *dev,
-			int handle, struct cal_cmd_t *para);
+    /* return -1 on error. Otherwise return the calibration result */
+    int (*calibrate)(struct sensors_poll_device_1_ext_t *dev,
+            int handle, struct cal_cmd_t *para);
 };
 
 struct cal_result_t {
-	union{
+    union{
 
-		struct {
-			int offset_x;	/*axis offset of x axis*/
-			int offset_y;	/*axis offset of x axis*/
-			int offset_z;	/*axis offset of x axis*/
-		};
-		struct {
-			int threshold_h; /*proximity threshold_h*/
-			int threshold_l; /*proximity threshold_l*/
-			int bias;	/*proximity measure data noise*/
-		};
-		int offset[3];
-	};
-	int factor; /*light sensor factor for real ligt strength*/
-	int range;
-	int *node;
+        struct {
+            int offset_x;    /*axis offset of x axis*/
+            int offset_y;    /*axis offset of x axis*/
+            int offset_z;    /*axis offset of x axis*/
+        };
+        struct {
+            int threshold_h; /*proximity threshold_h*/
+            int threshold_l; /*proximity threshold_l*/
+            int bias;    /*proximity measure data noise*/
+        };
+        int offset[3];
+    };
+    int factor; /*light sensor factor for real ligt strength*/
+    int range;
+    int *node;
 };
 
 static inline int sensors_open_ext(const struct hw_module_t* module,
-		struct sensors_poll_device_1_ext_t** device)
+        struct sensors_poll_device_1_ext_t** device)
 {
-	return module->methods->open(module,
-			SENSORS_HARDWARE_POLL, (struct hw_device_t**)device);
+    return module->methods->open(module,
+            SENSORS_HARDWARE_POLL, (struct hw_device_t**)device);
 }
 
 static inline int sensors_close_ext(struct sensors_poll_device_1_ext_t* device)
 {
-	return device->common.close(&device->common);
+    return device->common.close(&device->common);
 }
 
 __END_DECLS

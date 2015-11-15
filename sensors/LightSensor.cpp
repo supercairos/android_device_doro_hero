@@ -76,6 +76,7 @@ static const int input_report_type[SUPPORTED_LSENSOR_COUNT] = {
 
 LightSensor::LightSensor()
 : SensorBase(NULL, NULL),
+	  mEnabled(0),
 	  mInputReader(4),
 	  mHasPendingEvent(false),
 	  sensor_index(-1)
@@ -110,6 +111,7 @@ LightSensor::LightSensor()
 
 LightSensor::LightSensor(char *name)
 	: SensorBase(NULL, data_device_name[GENERIC_LS]),
+	  mEnabled(0),
 	  mInputReader(4),
 	  mHasPendingEvent(false),
 	  sensor_index(GENERIC_LS)
@@ -131,6 +133,7 @@ LightSensor::LightSensor(char *name)
 
 LightSensor::LightSensor(struct SensorContext *context)
 	: SensorBase(NULL, NULL, context),
+	  mEnabled(0),
 	  mInputReader(4),
 	  mHasPendingEvent(false),
 	  sensor_index(GENERIC_LS)
@@ -144,6 +147,7 @@ LightSensor::LightSensor(struct SensorContext *context)
 	strlcpy(input_sysfs_path, context->enable_path, sizeof(input_sysfs_path));
 	input_sysfs_path_len = strlen(input_sysfs_path);
 	mUseAbsTimeStamp = false;
+	enable(0, 1);
 }
 
 LightSensor::~LightSensor() {
@@ -213,8 +217,6 @@ int LightSensor::enable(int32_t, int en)
 			ALOGE("open %s failed.(%s)\n", input_sysfs_path, strerror(errno));
 			return -1;
 		}
-	} else if (flags) { /* already enabled */
-		mHasPendingEvent = true;
 	}
 	return 0;
 }
