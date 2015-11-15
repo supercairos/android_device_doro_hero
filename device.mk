@@ -188,7 +188,7 @@ PRODUCT_PACKAGES += \
     hwcomposer.msm8916 \
     libtinyxml \
     memtrack.msm8916
-	
+
 # Keystore
 PRODUCT_PACKAGES += \
     keystore.msm8916	
@@ -196,6 +196,13 @@ PRODUCT_PACKAGES += \
 # Power HAL
 PRODUCT_PACKAGES += \
     power.msm8916	
+
+# Sensors
+PRODUCT_PACKAGES += \
+    sensors.msm8916
+
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/sensors/calmodule.cfg:system/vendor/etc/calmodule.cfg
 	
 # IRSC
 PRODUCT_COPY_FILES += \
