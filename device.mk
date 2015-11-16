@@ -9,7 +9,7 @@ PRODUCT_AAPT_PREF_CONFIG := xhdpi
 $(call inherit-product, frameworks/native/build/phone-xhdpi-1024-dalvik-heap.mk)
 
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
-    persist.sys.usb.config=mtp
+    persist.sys.usb.config=mtp,adb
 	
 # IO Scheduler
 PRODUCT_PROPERTY_OVERRIDES += \
