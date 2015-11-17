@@ -370,6 +370,7 @@ service rfs_access /system/bin/rfs_access
 service config_bluetooth /system/bin/sh /system/etc/init.qcom.bt.sh "onboot"
     class core
     user root
+	seclabel u:r:bluetooth_loader:s0
     oneshot
 
 service hciattach /system/bin/sh /system/etc/init.qcom.bt.sh
@@ -377,6 +378,7 @@ service hciattach /system/bin/sh /system/etc/init.qcom.bt.sh
     user bluetooth
     group bluetooth net_bt_admin
     disabled
+	seclabel u:r:bluetooth_loader:s0
     oneshot
 
 on property:bluetooth.hciattach=true
@@ -509,6 +511,8 @@ on property:init.svc.sdcard=running
 
 service charger /charger
     class charger
+	group log
+    seclabel u:r:healthd:s0
 
 on set_up_fs
     start setup_fs

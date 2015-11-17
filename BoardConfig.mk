@@ -81,6 +81,7 @@ BOARD_HARDWARE_CLASS 			:= $(DEVICE_PATH)/cmhw/src
 
 # Fonts
 EXTENDED_FONT_FOOTPRINT 		:= true
+USE_MINIKIN                     := true
 
 # Graphics
 TARGET_USES_C2D_COMPOSITION 		:= true
