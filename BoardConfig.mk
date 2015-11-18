@@ -34,7 +34,6 @@ endif
 
 TARGET_KERNEL_SOURCE 			:= kernel/doro/msm8916
 TARGET_KERNEL_ARCH 				:= arm
-BOARD_CUSTOM_BOOTIMG_MK 		:= $(DEVICE_PATH)/mkbootimg.mk
 BOARD_KERNEL_BASE 				:= 0x80000000
 BOARD_KERNEL_CMDLINE 			:= console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 androidboot.hardware=qcom user_debug=31 msm_rtb.filter=0x237 ehci-hcd.park=3 androidboot.bootdevice=7824900.sdhci
 BOARD_KERNEL_CMDLINE			+= androidboot.selinux=permissive
