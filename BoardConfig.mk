@@ -33,16 +33,19 @@ TARGET_KERNEL_ADDITIONAL_CONFIG := cyanogenmod_debug_config
 endif
 
 TARGET_KERNEL_SOURCE 			:= kernel/doro/msm8916
+TARGET_KERNEL_ARCH 				:= arm
 BOARD_CUSTOM_BOOTIMG_MK 		:= $(DEVICE_PATH)/mkbootimg.mk
 BOARD_KERNEL_BASE 				:= 0x80000000
 BOARD_KERNEL_CMDLINE 			:= console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 androidboot.hardware=qcom user_debug=31 msm_rtb.filter=0x237 ehci-hcd.park=3 androidboot.bootdevice=7824900.sdhci
-# BOARD_KERNEL_CMDLINE			+= androidboot.selinux=permissive
+BOARD_KERNEL_CMDLINE			+= androidboot.selinux=permissive
 BOARD_KERNEL_PAGESIZE 			:= 2048
 BOARD_KERNEL_SEPARATED_DT 		:= true
 BOARD_KERNEL_TAGS_OFFSET 		:= 0x01E00000
 BOARD_RAMDISK_OFFSET     		:= 0x02000000
+BOARD_DTBTOOL_ARGS 				:= -2
 
 # Charger
+BOARD_CHARGER_DISABLE_INIT_BLANK := true
 BOARD_CHARGER_SHOW_PERCENTAGE := true
 
 # Partition table
@@ -70,7 +73,7 @@ BOARD_USES_QCOM_HARDWARE := true
 
 # RIL
 TARGET_RIL_VARIANT 		:= caf
-PROTOBUF_SUPPORTED 		:= true
+# PROTOBUF_SUPPORTED 		:= true
 
 # Malloc implementation
 MALLOC_IMPL 			:= dlmalloc
@@ -109,6 +112,7 @@ BOARD_USES_QC_TIME_SERVICES 		:= true
 #    ov2680
 TARGET_USE_VENDOR_CAMERA_EXT := true
 USE_DEVICE_SPECIFIC_CAMERA := true
+COMMON_GLOBAL_CFLAGS += -DCAMERA_VENDOR_L_COMPAT
 
 # Audio
 BOARD_USES_ALSA_AUDIO 				:= true
@@ -131,6 +135,9 @@ BLUETOOTH_HCI_USE_MCT 							:= true
 
 # Crypto
 TARGET_HW_DISK_ENCRYPTION := true
+
+# Keymaster
+TARGET_KEYMASTER_WAIT_FOR_QSEE := true
 
 # Dex
 ifeq ($(HOST_OS),linux)

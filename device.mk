@@ -258,5 +258,13 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/gps/etc/izat.conf:system/etc/izat.conf \
     $(LOCAL_PATH)/gps/etc/quipc.conf:system/etc/quipc.conf \
     $(LOCAL_PATH)/gps/etc/sap.conf:system/etc/sap.conf
+	
+# BoringSSL
+PRODUCT_PACKAGES += \
+    libboringssl-compat
+
+# stlport
+PRODUCT_PACKAGES += \
+    libstlport
 
 $(call inherit-product-if-exists, vendor/doro/hero/hero-vendor.mk)

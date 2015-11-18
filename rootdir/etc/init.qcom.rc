@@ -40,19 +40,11 @@ on init
     # Set permissions for persist partition
     mkdir /persist 0771 system system
 	
-    # See storage config details at http://source.android.com/tech/storage/
-    mkdir /mnt/shell/emulated 0700 shell shell
-    mkdir /storage/emulated 0555 root root
-    mkdir /mnt/media_rw/sdcard1 0700 media_rw media_rw
-    mkdir /storage/sdcard1 0700 root root
-	
-	mkdir /mnt/media_rw/uicc0 0700 media_rw media_rw
-	mkdir /storage/uicc0 0700 root root
-	
-    export EXTERNAL_STORAGE /storage/emulated/legacy
-    export SECONDARY_STORAGE /storage/sdcard1
-    export EMULATED_STORAGE_SOURCE /mnt/shell/emulated
-    export EMULATED_STORAGE_TARGET /storage/emulated
+	symlink /sdcard /mnt/sdcard
+    symlink /sdcard /storage/sdcard0
+
+    # Symbols required for blobs
+	export LD_PRELOAD "/system/lib/libboringssl-compat.so"
 
     # Support legacy paths
     symlink /storage/emulated/legacy /sdcard
@@ -395,6 +387,8 @@ service qmuxd /system/bin/qmuxd
 
 service netmgrd /system/bin/netmgrd
     class main
+	user root
+    group radio
 
 on property:ro.use_data_netmgrd=false
     # netmgr not supported on specific target
