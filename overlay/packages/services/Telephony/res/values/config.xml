@@ -26,7 +26,4 @@
 	
 	<!-- Flag indicating if hac is enabled -->
     <bool name="hac_enabled">true</bool>
-
-    <!-- Flag indicating if dtmf tone type is enabled -->
-    <bool name="dtmf_type_enabled">true</bool>
 </resources>
