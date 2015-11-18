@@ -12,6 +12,8 @@ LOCAL_MODULE_TAGS := optional
 
 ifeq ($(TARGET_DEVICE),apq8026_lw)
 LOCAL_CFLAGS += -DPDK_FEATURE_SET
+else ifeq ($(BOARD_VENDOR_QCOM_LOC_PDK_FEATURE_SET),true)
+LOCAL_CFLAGS += -DPDK_FEATURE_SET
 endif
 
 LOCAL_SHARED_LIBRARIES := \
@@ -21,7 +23,6 @@ LOCAL_SHARED_LIBRARIES := \
     libdl
 
 LOCAL_SRC_FILES += \
-    MsgTask.cpp \
     LocApiBase.cpp \
     LocAdapterBase.cpp \
     ContextBase.cpp \
@@ -33,11 +34,11 @@ LOCAL_CFLAGS += \
      -D_ANDROID_
 
 LOCAL_C_INCLUDES:= \
-    $(TARGET_OUT_HEADERS)/gps.utils
+    $(TARGET_OUT_HEADERS)/gps.utils \
+    $(TARGET_OUT_HEADERS)/libflp
 
 LOCAL_COPY_HEADERS_TO:= libloc_core/
 LOCAL_COPY_HEADERS:= \
-    MsgTask.h \
     LocApiBase.h \
     LocAdapterBase.h \
     ContextBase.h \

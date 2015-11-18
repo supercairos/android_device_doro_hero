@@ -163,8 +163,8 @@ WPA_SUPPLICANT_VERSION 				:= VER_0_8_X
 
 # GPS
 BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := $(TARGET_BOARD_PLATFORM)
-TARGET_GPS_HAL_PATH := $(DEVICE_PATH)/gps
-TARGET_NO_RPC := true
+USE_DEVICE_SPECIFIC_LOC_API := true
+USE_DEVICE_SPECIFIC_GPS := true
 
 # Video
 TARGET_HAVE_SIGNED_VENUS_FW := true
@@ -187,17 +187,6 @@ TARGET_RECOVERY_QCOM_RTC_FIX 				:= true
 include device/qcom/sepolicy/sepolicy.mk
 BOARD_SEPOLICY_DIRS += \
     $(DEVICE_PATH)/sepolicy
-
-BOARD_SEPOLICY_UNION += \
-    bluetooth_loader.te \
-    healthd.te \
-    qseecomd.te \
-    surfaceflinger.te \
-    wcnss_service.te \
-    file_contexts \
-    property_contexts \
-    file.te \
-    system_server.te
 
 # Props
 TARGET_SYSTEM_PROP 							+= $(DEVICE_PATH)/system.prop
