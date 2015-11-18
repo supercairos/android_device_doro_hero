@@ -78,10 +78,6 @@ TARGET_RIL_VARIANT 		:= caf
 # Malloc implementation
 MALLOC_IMPL 			:= dlmalloc
 
-# CMHW
-BOARD_USES_CYANOGEN_HARDWARE 	:= true
-BOARD_HARDWARE_CLASS 			:= $(DEVICE_PATH)/cmhw/src
-
 # Fonts
 EXTENDED_FONT_FOOTPRINT 		:= true
 USE_MINIKIN                     := true
