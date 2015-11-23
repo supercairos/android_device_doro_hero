@@ -15,7 +15,6 @@
 /dev/block/bootdevice/by-name/config             /frp                emmc    defaults                                                                                         defaults
 
 /devices/soc.0/7864900.sdhci/mmc_host*           auto                auto    auto                                                                                             voldmanaged=sdcard1:auto,noemulatedsd
-/dev/block/bootdevice/by-name/config             /frp                emmc    defaults                                                                                         defaults
 
 # /devices/soc.0/79c0000.qcom,ehci-host                       /storage/uicc0     vfat    nosuid,nodev         wait,voldmanaged=uicc0:auto
 # /devices/soc.0/79c0000.qcom,ehci-host                       /storage/uicc1     vfat    nosuid,nodev         wait,voldmanaged=uicc1:auto
