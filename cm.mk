@@ -20,6 +20,8 @@ PRODUCT_MANUFACTURER := Doro
 
 # Set product name
 PRODUCT_BUILD_PROP_OVERRIDES += \
-    PRODUCT_NAME=Doro_Liberto_825
+    PRODUCT_NAME=Doro_Liberto_825 \
+	BUILD_FINGERPRINT=Doro/825A_EU_RET/825A:5.1.1/EU_RET_00.52.04/321:user/release-keys \
+	PRIVATE_BUILD_DESC="msm8916_32-user 5.1.1 LMY47V 321 release-keys"
 	
 PRODUCT_GMS_CLIENTID_BASE := android-doro
