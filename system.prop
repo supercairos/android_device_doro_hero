@@ -121,4 +121,4 @@ ro.qualcomm.cabl=2
 ro.config.zram=true
 
 # Factory reset protection
-ro.frp.pst=/dev/block/bootdevice/by-name/frp
+ro.frp.pst=/dev/block/bootdevice/by-name/config
