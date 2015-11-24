@@ -65,8 +65,6 @@ on fs
     mount ext4 /dev/block/bootdevice/by-name/persist /persist nosuid nodev barrier=1 check
     mkdir /persist/data 0700  system system
     restorecon_recursive   /persist
-	
-    setprop ro.crypto.fuse_sdcard true	
 
 #enable zram
 on property:ro.config.zram=true
@@ -118,6 +116,9 @@ on boot
     chmod 2770 /dev/socket/qmux_bluetooth
     mkdir /dev/socket/qmux_gps 0770 gps gps
     chmod 2770 /dev/socket/qmux_gps
+	
+	#Create NETMGR daemon socket area
+    mkdir /dev/socket/netmgr 0750 radio radio
 	
 	chmod 0644 /proc/cmdline
 	
@@ -490,19 +491,6 @@ service hostapd /system/bin/hostapd -dd /data/hostapd/hostapd.conf
     oneshot
     disabled
 
-# virtual sdcard daemon running as media_rw (1023)
-service sdcard /system/bin/sdcard -u 1023 -g 1023 -l /data/media /mnt/shell/emulated
-    class late_start
-
-service fuse_sdcard1 /system/bin/sdcard -u 1023 -g 1023 -w 1023 -d /mnt/media_rw/sdcard1 /storage/sdcard1
-    class late_start
-    disabled
-
-# Binding fuse mount point to /storage/emulated/legacy
-on property:init.svc.sdcard=running
-    wait /mnt/shell/emulated/0
-    mount none /mnt/shell/emulated/0 /storage/emulated/legacy bind
-
 service charger /charger
     class charger
 	group log
@@ -553,12 +541,12 @@ service qseecomd /system/bin/qseecomd
    user root
    group root
    
-service perfd /system/bin/perfd
+service perfd /vendor/bin/perfd
    class main
    user root
    disabled
 
-service thermal-engine /system/bin/thermal-engine
+service thermal-engine /vendor/bin/thermal-engine
    class main
    user root
    socket thermal-send-client stream 0666 system system
@@ -576,7 +564,7 @@ service audiod /system/bin/audiod
    user system
    group system
    
-service ppd /system/bin/mm-pp-daemon
+service ppd /vendor/bin/mm-pp-daemon
     class late_start
     disabled
     user system
