@@ -72,7 +72,7 @@ BOARD_USES_QCOM_HARDWARE := true
 
 # RIL
 TARGET_RIL_VARIANT 		:= caf
-# PROTOBUF_SUPPORTED 		:= true
+FEATURE_QCRIL_UIM_SAP_SERVER_MODE := true
 
 # Malloc implementation
 MALLOC_IMPL 			:= dlmalloc
