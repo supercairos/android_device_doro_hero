@@ -13,7 +13,7 @@ persist.audio.fluence.speaker=true
 tunnel.audio.encode=false
 audio.offload.buffer.size.kb=64
 audio.offload.min.duration.secs=30
-av.offload.enable=false
+video.offload.enable=false
 use.voice.path.for.pcm.voip=true
 audio.offload.gapless.enabled=true
 
