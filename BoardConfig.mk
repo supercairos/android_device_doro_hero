@@ -143,7 +143,6 @@ ifeq ($(HOST_OS),linux)
 endif
 
 # FM
-# TARGET_FM_LEGACY_PATCHLOADER := true
 TARGET_QCOM_NO_FM_FIRMWARE := true
 
 # NFC
