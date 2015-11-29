@@ -25,7 +25,6 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.bluetooth_le.xml:system/etc/permissions/android.hardware.bluetooth_le.xml \
     frameworks/native/data/etc/android.hardware.camera.flash-autofocus.xml:system/etc/permissions/android.hardware.camera.flash-autofocus.xml \
     frameworks/native/data/etc/android.hardware.camera.front.xml:system/etc/permissions/android.hardware.camera.front.xml \
-    frameworks/native/data/etc/android.hardware.location.gps.xml:system/etc/permissions/android.hardware.location.gps.xml \
     frameworks/native/data/etc/android.hardware.telephony.gsm.xml:system/etc/permissions/android.hardware.telephony.gsm.xml \
     frameworks/native/data/etc/android.hardware.touchscreen.multitouch.jazzhand.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.jazzhand.xml \
     frameworks/native/data/etc/android.hardware.usb.accessory.xml:system/etc/permissions/android.hardware.usb.accessory.xml \
@@ -35,7 +34,8 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml \
 	frameworks/native/data/etc/android.hardware.nfc.xml:system/etc/permissions/android.hardware.nfc.xml \
     frameworks/native/data/etc/android.hardware.nfc.hce.xml:system/etc/permissions/android.hardware.nfc.hce.xml \
-    frameworks/base/nfc-extras/com.android.nfc_extras.xml:system/etc/permissions/com.android.nfc_extras.xml 
+    frameworks/base/nfc-extras/com.android.nfc_extras.xml:system/etc/permissions/com.android.nfc_extras.xml
+#	frameworks/native/data/etc/android.hardware.location.gps.xml:system/etc/permissions/android.hardware.location.gps.xml
 
 # ANT+
 PRODUCT_PACKAGES += \
@@ -251,15 +251,15 @@ PRODUCT_PACKAGES += \
     libmm-qcamera
 	
 # GPS
-PRODUCT_PACKAGES += \
-    gps.msm8916
+# PRODUCT_PACKAGES += \
+#    gps.msm8916
 	
-PRODUCT_COPY_FILES += \
-	$(LOCAL_PATH)/gps/etc/gps.conf:system/etc/gps.conf \
-    $(LOCAL_PATH)/gps/etc/flp.conf:system/etc/flp.conf \
-    $(LOCAL_PATH)/gps/etc/izat.conf:system/etc/izat.conf \
-    $(LOCAL_PATH)/gps/etc/quipc.conf:system/etc/quipc.conf \
-    $(LOCAL_PATH)/gps/etc/sap.conf:system/etc/sap.conf
+# PRODUCT_COPY_FILES += \
+#	$(LOCAL_PATH)/gps/etc/gps.conf:system/etc/gps.conf \
+#   $(LOCAL_PATH)/gps/etc/flp.conf:system/etc/flp.conf \
+#   $(LOCAL_PATH)/gps/etc/izat.conf:system/etc/izat.conf \
+#   $(LOCAL_PATH)/gps/etc/quipc.conf:system/etc/quipc.conf \
+#   $(LOCAL_PATH)/gps/etc/sap.conf:system/etc/sap.conf
 	
 # BoringSSL
 PRODUCT_PACKAGES += \
