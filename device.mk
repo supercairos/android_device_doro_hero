@@ -223,10 +223,8 @@ PRODUCT_COPY_FILES += \
 
 # FM
 PRODUCT_PACKAGES += \
-    FM2 \
-    FMRecord \
-    libqcomfm_jni \
-    qcom.fmradio	
+    FMRadio \
+    libfmjni
 	
 # Ramdisk
 PRODUCT_PACKAGES += \
