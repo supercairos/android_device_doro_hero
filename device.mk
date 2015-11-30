@@ -7,9 +7,6 @@ PRODUCT_AAPT_CONFIG := normal
 PRODUCT_AAPT_PREF_CONFIG := xhdpi
 
 $(call inherit-product, frameworks/native/build/phone-xhdpi-1024-dalvik-heap.mk)
-
-PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
-    persist.sys.usb.config=mtp
 	
 # IO Scheduler
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -60,7 +57,7 @@ ADDITIONAL_DEFAULT_PROPERTIES += \
     ro.usb.id.ptp_adb=3006 \
     ro.usb.id.ums=3007 \
     ro.usb.id.ums_adb=3008 \
-    ro.usb.vid=2b43
+    ro.usb.vid=2B43
 
 # Charger
 PRODUCT_PACKAGES += \
@@ -115,13 +112,13 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     frameworks/av/media/libstagefright/data/media_codecs_google_audio.xml:system/etc/media_codecs_google_audio.xml \
     frameworks/av/media/libstagefright/data/media_codecs_google_telephony.xml:system/etc/media_codecs_google_telephony.xml \
-    frameworks/av/media/libstagefright/data/media_codecs_google_video_le.xml:system/etc/media_codecs_google_video_le.xml \
+    frameworks/av/media/libstagefright/data/media_codecs_google_video.xml:system/etc/media_codecs_google_video.xml \
     $(LOCAL_PATH)/audio/media_codecs.xml:system/etc/media_codecs.xml \
 	$(LOCAL_PATH)/audio/media_codecs_performance.xml:system/etc/media_codecs_performance.xml \
     $(LOCAL_PATH)/audio/media_profiles.xml:system/etc/media_profiles.xml 
 
 PRODUCT_PACKAGES += \
-    libdashplayer \
+	libextmedia_jni \
     libOmxAacEnc \
     libOmxAmrEnc \
     libOmxCore \
@@ -129,13 +126,10 @@ PRODUCT_PACKAGES += \
     libOmxQcelp13Enc \
     libOmxVdec \
     libOmxVenc \
-	libOmxVidcCommon \
-	libqcmediaplayer \
-    libstagefrighthw \
-    qcmediaplayer
+	libOmxVidcCommon
 
 PRODUCT_BOOT_JARS += \
-    qcmediaplayer	
+    libstagefrighthw	
 	
 # Wifi
 PRODUCT_PACKAGES += \
