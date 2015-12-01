@@ -27,10 +27,7 @@ TARGET_GLOBAL_CFLAGS 					+= -mfpu=neon -mfloat-abi=softfp
 TARGET_GLOBAL_CPPFLAGS 					+= -mfpu=neon -mfloat-abi=softfp
 
 # Kernel
-TARGET_KERNEL_CONFIG			:= cm_hero_defconfig
-ifeq ($(TARGET_BUILD_VARIANT),eng)
-TARGET_KERNEL_ADDITIONAL_CONFIG := cyanogenmod_debug_config
-endif
+TARGET_KERNEL_CONFIG			:= cyanogenmod_hero_defconfig
 
 TARGET_KERNEL_SOURCE 			:= kernel/doro/msm8916
 TARGET_KERNEL_ARCH 				:= arm
@@ -159,6 +156,8 @@ BOARD_WPA_SUPPLICANT_DRIVER 		:= NL80211
 BOARD_WPA_SUPPLICANT_PRIVATE_LIB 	:= lib_driver_cmd_qcwcn
 TARGET_USES_QCOM_WCNSS_QMI 			:= true
 TARGET_USES_WCNSS_CTRL 				:= true
+WIFI_DRIVER_MODULE_PATH 			:= "/system/lib/modules/wlan.ko"
+WIFI_DRIVER_MODULE_NAME 			:= "wlan"
 WIFI_DRIVER_FW_PATH_AP 				:= "ap"
 WIFI_DRIVER_FW_PATH_STA 			:= "sta"
 WPA_SUPPLICANT_VERSION 				:= VER_0_8_X
