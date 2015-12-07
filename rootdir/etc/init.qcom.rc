@@ -375,10 +375,15 @@ service hciattach /system/bin/sh /system/etc/init.qcom.bt.sh
     oneshot
 
 on property:bluetooth.hciattach=true
-    start hciattach
+     start hciattach	
+	
+# FM
+on property:bluetooth.status=on
+    write /sys/module/radio_iris_transport/parameters/fmsmd_set 1
 
 on property:bluetooth.hciattach=false
-    setprop bluetooth.status off
+    write /sys/module/radio_iris_transport/parameters/fmsmd_set 0
+	setprop bluetooth.status off
 
 # QMUX must be in multiple groups to support external process connections
 service qmuxd /system/bin/qmuxd
